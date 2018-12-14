@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParses = require('body-parser');
-
+const item = require('./routes/item.route');
 const app = express();
 
-let port = 3000;
+app.use('/items', item);
 
-app.listen(port, () => {
-    console.log('Server is up and running on port number ' + port);
+app.listen(3000, () => {
+    console.log('Server is up and running.');
 });
