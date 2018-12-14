@@ -12,7 +12,7 @@ exports.itemCreate = function (req, res) {
         if (err) {
             return next(err);
         }
-        res.send('Item created successfully.');
+        res.send('Created successfully!');
     });
 };
 
@@ -26,6 +26,13 @@ exports.itemDetails = function (req, res) {
 exports.itemUpdate = function (req, res) {
     Item.findOneAndUpdate(req.params.id, { $set: req.body }, function(err, item) {
         if (err) return next(err);
-        res.send('Item updated');
+        res.send('Updated successfully!');
+    });
+};
+
+exports.itemDelete = function (req, res) {
+    Item.findOneAndDelete(req.params.id, { $set: req.body }, function(err, item) {
+        if (err) return next(err);
+        res.send('Deleted successfully!');
     });
 };
