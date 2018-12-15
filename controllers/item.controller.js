@@ -1,38 +1,28 @@
 const Item = require('../models/item.model');
 
-exports.itemCreate = function (req, res) {
-    let item = new Item(
-        {
-            number: req.body.number,
-            name: req.body.name,
-        }
-    );
-
-    item.save(function(err){
-        if (err) {
-            return next(err);
-        }
-        res.send('Created successfully!');
+exports.itemCreate = (req, res) => {
+    const newItem = new Item({
+        number: req.body.number,
+        name: req.body.name,
     });
+
+    newItem.save().then(item => res.json(item));
 };
 
-exports.itemDetails = function (req, res) {
-    Item.findById(req.params.id, function(err, item) {
-        if (err) return next(err);
-        res.send(item);
-    });
+exports.itemDetails = (req, res) => {
+    Item.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }))
 };
 
-exports.itemUpdate = function (req, res) {
-    Item.findOneAndUpdate(req.params.id, { $set: req.body }, function(err, item) {
-        if (err) return next(err);
-        res.send('Updated successfully!');
-    });
+exports.itemUpdate = (req, res) => {
+    Item.findById(req.params.id)
+        .then(item => item.update(req.body).then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }))
 };
 
-exports.itemDelete = function (req, res) {
-    Item.findOneAndDelete(req.params.id, { $set: req.body }, function(err, item) {
-        if (err) return next(err);
-        res.send('Deleted successfully!');
-    });
+exports.itemDelete = (req, res) => {
+    Item.findById(req.params.id)
+        .then(item => item.remove().then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }))
 };
