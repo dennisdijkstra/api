@@ -1,6 +1,6 @@
 const Item = require('../models/item.model');
 
-exports.itemCreate = function (req, res) {
+exports.itemCreate = (req, res) => {
     let item = new Item(
         {
             number: req.body.number,
@@ -8,7 +8,7 @@ exports.itemCreate = function (req, res) {
         }
     );
 
-    item.save(function(err){
+    item.save((err) => {
         if (err) {
             return next(err);
         }
@@ -16,22 +16,22 @@ exports.itemCreate = function (req, res) {
     });
 };
 
-exports.itemDetails = function (req, res) {
-    Item.findById(req.params.id, function(err, item) {
+exports.itemDetails = (req, res) => {
+    Item.findById(req.params.id, (err, item) => {
         if (err) return next(err);
         res.send(item);
     });
 };
 
-exports.itemUpdate = function (req, res) {
-    Item.findOneAndUpdate(req.params.id, { $set: req.body }, function(err, item) {
+exports.itemUpdate = (req, res) => {
+    Item.findOneAndUpdate(req.params.id, { $set: req.body }, (err, item) => {
         if (err) return next(err);
         res.send('Updated successfully!');
     });
 };
 
-exports.itemDelete = function (req, res) {
-    Item.findOneAndDelete(req.params.id, { $set: req.body }, function(err, item) {
+exports.itemDelete = (req, res) => {
+    Item.findOneAndDelete(req.params.id, { $set: req.body }, (err, item) => {
         if (err) return next(err);
         res.send('Deleted successfully!');
     });
