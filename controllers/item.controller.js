@@ -1,38 +1,28 @@
 const Item = require('../models/item.model');
 
 exports.itemCreate = (req, res) => {
-    let item = new Item(
-        {
-            number: req.body.number,
-            name: req.body.name,
-        }
-    );
-
-    item.save((err) => {
-        if (err) {
-            return next(err);
-        }
-        res.send('Created successfully!');
+    const newItem = new Item({
+        number: req.body.number,
+        name: req.body.name,
     });
+
+    newItem.save().then(item => res.json(item));
 };
 
 exports.itemDetails = (req, res) => {
-    Item.findById(req.params.id, (err, item) => {
-        if (err) return next(err);
-        res.send(item);
-    });
+    Item.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }))
 };
 
 exports.itemUpdate = (req, res) => {
-    Item.findOneAndUpdate(req.params.id, { $set: req.body }, (err, item) => {
-        if (err) return next(err);
-        res.send('Updated successfully!');
-    });
+    Item.findById(req.params.id)
+        .then(item => item.update(req.body).then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }))
 };
 
 exports.itemDelete = (req, res) => {
-    Item.findOneAndDelete(req.params.id, { $set: req.body }, (err, item) => {
-        if (err) return next(err);
-        res.send('Deleted successfully!');
-    });
+    Item.findById(req.params.id)
+        .then(item => item.remove().then(() => res.json({ success: true })))
+        .catch(err => res.status(404).json({ success: false }))
 };

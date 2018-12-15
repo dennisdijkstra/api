@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+
 const item = require('./routes/item.route');
 
 const app = express();
@@ -18,7 +19,9 @@ mongoose
     .then(() => console.log('MongoDB Connected ..'))
     .catch(err => console.log(err));
 
+// Use Routes
+app.use('/items', item);
+
 const port = process.env.PORT || 3000;
 
-app.use('/items', item);
 app.listen(port, () => console.log(`Server is up and running on port ${port}`));
