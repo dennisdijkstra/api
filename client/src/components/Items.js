@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getItems } from '../actions/itemActions';
 
 class Items extends Component {
-    state = {
-        items: [
-            { number: 1, name: 'Item 1' },
-            { number: 2, name: 'Item 2' },
-            { number: 3, name: 'Item 3' },
-            { number: 4, name: 'Item 4' },
-        ],
+    static propTypes = {
+        getItems: PropTypes.func.isRequired,
+        item: PropTypes.shape({
+            items: PropTypes.arrayOf.isRequired,
+        }).isRequired,
+    };
+
+    componentDidMount() {
+        const { getItems: getAllItems } = this.props;
+        getAllItems();
     }
 
     render() {
-        const { items } = this.state;
+        const { item: { items } } = this.props;
 
         return (
             <div>
@@ -26,4 +32,8 @@ class Items extends Component {
     }
 }
 
-export default Items;
+const mapStateToProps = state => ({
+    item: state.item,
+});
+
+export default connect(mapStateToProps, { getItems })(Items);
