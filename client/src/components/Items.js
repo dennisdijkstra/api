@@ -39,7 +39,7 @@ class Items extends Component {
 
         return (
             <>
-                <form>
+                <form style={{ display: 'inline-block' }}>
                     <input type="text" ref={item => this.item = item} />
                 </form>
                 <button
@@ -49,9 +49,9 @@ class Items extends Component {
                 >
                     Add
                 </button>
-                <ul>
+                <ul style={{ padding: 0 }}>
                     {items.map(({ id, name }) => (
-                        <li key={id}>
+                        <li key={id} style={{ listStyle: 'none' }}>
                             <p style={{ display: 'inline-block' }}>{name}</p>
                             <button type="button" onClick={() => this.deleteItem(id)} style={{ display: 'inline-block' }}>X</button>
                         </li>
