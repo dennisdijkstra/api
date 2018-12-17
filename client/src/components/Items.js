@@ -50,10 +50,10 @@ class Items extends Component {
                     Add
                 </button>
                 <ul style={{ padding: 0 }}>
-                    {items.map(({ id, name }) => (
-                        <li key={id} style={{ listStyle: 'none' }}>
+                    {items.map(({ _id, name }) => (
+                        <li key={_id} style={{ listStyle: 'none' }}>
                             <p style={{ display: 'inline-block' }}>{name}</p>
-                            <button type="button" onClick={() => this.deleteItem(id)} style={{ display: 'inline-block' }}>X</button>
+                            <button type="button" onClick={() => this.deleteItem(_id)} style={{ display: 'inline-block' }}>X</button>
                         </li>
                     ))}
                 </ul>

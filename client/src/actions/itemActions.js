@@ -1,10 +1,20 @@
-import { ADD_ITEM, GET_ITEMS, DELETE_ITEM } from './types';
+import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING } from './types';
 
-export const getItems = () => (
+export const setItemsLoading = () => (
     {
-        type: GET_ITEMS,
+        type: ITEMS_LOADING,
     }
 );
+
+export const getItems = () => (dispatch) => {
+    dispatch(setItemsLoading());
+    fetch('http://localhost:5000/api/items')
+        .then(response => response.json())
+        .then(data => dispatch({
+            type: GET_ITEMS,
+            payload: data,
+        }));
+};
 
 export const addItem = item => (
     {

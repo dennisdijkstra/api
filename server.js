@@ -1,14 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
-const item = require('./routes/item.route');
+const item = require('./routes/api/items');
 
 const app = express();
 
 // Bodyparser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 // DB Config
 const db = require('./config/keys').mongoURI;
@@ -20,8 +22,8 @@ mongoose
     .catch(err => console.log(err));
 
 // Use Routes
-app.use('/items', item);
+app.use('/api/items', item);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server is up and running on port ${port}`));
