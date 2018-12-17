@@ -1,12 +1,8 @@
-import { GET_ITEMS } from '../actions/types';
+import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
 
 const initialState = {
-    items: [
-        { number: 1, name: 'Item 1' },
-        { number: 2, name: 'Item 2' },
-        { number: 3, name: 'Item 3' },
-        { number: 4, name: 'Item 4' },
-    ],
+    items: [],
+    loading: false,
 };
 
 export default (state = initialState, action) => {
@@ -14,6 +10,23 @@ export default (state = initialState, action) => {
     case GET_ITEMS:
         return {
             ...state,
+            items: action.payload,
+            loading: false,
+        };
+    case ADD_ITEM:
+        return {
+            ...state,
+            items: [action.payload, ...state.items],
+        };
+    case DELETE_ITEM:
+        return {
+            ...state,
+            items: state.items.filter(item => item.id !== action.payload),
+        };
+    case ITEMS_LOADING:
+        return {
+            ...state,
+            loading: true,
         };
     default:
         return state;

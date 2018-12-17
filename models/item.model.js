@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
-let ItemSchema = new Schema({
-    number: { type: Number, required: true },
+const ItemSchema = new Schema({
+    id: { type: String, required: true },
     name: { type: String, required: true, max: 100 },
 });
 
