@@ -27,9 +27,10 @@ module.exports = {
     "rules": {
         "react/jsx-filename-extension": 0,
         "react/jsx-one-expression-per-line": 0,
+        "react/prefer-stateless-function": 0,
+        "react/jsx-indent-props": [1, 4],
         "function-paren-newline": 0,
         "no-return-assign": 0,
-        "react/jsx-indent-props": [1, 4],
         "no-unused-expressions": 0,
         "object-curly-newline": 0,
         "indent": [
