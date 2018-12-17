@@ -1,6 +1,9 @@
 # dependencies
 /node_modules
 
+# production
+/dist
+
 # misc
 /config/keys.js
 .DS_Store
