@@ -2,7 +2,7 @@
 /node_modules
 
 # production
-/dist
+/client/dist
 
 # misc
 /config/keys.js
