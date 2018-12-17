@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "dev": "webpack --mode development ./src/index.js --output ./dist/bundle.js --watch",
+    "dev": "webpack-dev-server --mode development ./src/index.js --output ./dist/bundle.js --open",
     "build": "webpack --mode production ./src/index.js --output ./dist/bundle.js --watch"
   },
   "author": "",
