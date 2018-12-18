@@ -31,9 +31,15 @@ export const addItem = item => (dispatch) => {
         }));
 };
 
-export const deleteItem = id => (
-    {
-        type: DELETE_ITEM,
-        payload: id,
-    }
-);
+export const deleteItem = id => (dispatch) => {
+    fetch(`http://localhost:5000/api/items/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(() => dispatch({
+            type: DELETE_ITEM,
+            payload: id,
+        }));
+};
