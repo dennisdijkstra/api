@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { addItem, getItems, deleteItem } from '../actions/itemActions';
 
@@ -22,7 +21,6 @@ class Items extends Component {
     addItem = () => {
         const { addItem: add } = this.props;
         const newItem = {
-            id: uuid(),
             name: this.item.value,
         };
 

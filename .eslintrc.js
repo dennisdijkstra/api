@@ -32,6 +32,7 @@ module.exports = {
         "function-paren-newline": 0,
         "no-return-assign": 0,
         "no-unused-expressions": 0,
+        "no-underscore-dangle": 0,
         "object-curly-newline": 0,
         "indent": [
             "error", 4

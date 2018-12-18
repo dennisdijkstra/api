@@ -2,11 +2,11 @@ const Item = require('../models/item.model');
 
 exports.itemCreate = (req, res) => {
     const newItem = new Item({
-        number: req.body.number,
         name: req.body.name,
     });
 
-    newItem.save().then(item => res.json(item));
+    newItem.save()
+        .then(item => res.json(item));
 };
 
 exports.items = (req, res) => {

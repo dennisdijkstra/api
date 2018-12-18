@@ -16,16 +16,30 @@ export const getItems = () => (dispatch) => {
         }));
 };
 
-export const addItem = item => (
-    {
-        type: ADD_ITEM,
-        payload: item,
-    }
-);
+export const addItem = item => (dispatch) => {
+    fetch('http://localhost:5000/api/items', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item),
+    })
+        .then(response => response.json())
+        .then(data => dispatch({
+            type: ADD_ITEM,
+            payload: data,
+        }));
+};
 
-export const deleteItem = id => (
-    {
-        type: DELETE_ITEM,
-        payload: id,
-    }
-);
+export const deleteItem = id => (dispatch) => {
+    fetch(`http://localhost:5000/api/items/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(() => dispatch({
+            type: DELETE_ITEM,
+            payload: id,
+        }));
+};
