@@ -74,7 +74,7 @@ class Items extends Component {
                                     <button type="button" onClick={() => this.showEdit(_id)} style={{ display: 'inline-block' }}>Edit</button>
                                 </>
                             }
-                            <button type="button" onClick={() => this.deleteItem(_id)} style={{ display: 'inline-block' }}>X</button>
+                            <button type="button" onClick={() => this.deleteItem(_id)} style={{ display: 'inline-block' }}>Delete</button>
                         </li>
                     ))}
                 </ul>
