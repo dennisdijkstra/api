@@ -1,5 +1,10 @@
 const Item = require('../models/item.model');
 
+exports.items = (req, res) => {
+    Item.find()
+        .then(items => res.json(items));
+};
+
 exports.itemCreate = (req, res) => {
     const newItem = new Item({
         name: req.body.name,
@@ -9,11 +14,6 @@ exports.itemCreate = (req, res) => {
         .then(item => res.json(item));
 };
 
-exports.items = (req, res) => {
-    Item.find()
-        .then(items => res.json(items));
-};
-
 exports.itemDetails = (req, res) => {
     Item.findById(req.params.id)
         .then(item => res.json(item))
@@ -21,8 +21,12 @@ exports.itemDetails = (req, res) => {
 };
 
 exports.itemUpdate = (req, res) => {
-    Item.findById(req.params.id)
-        .then(item => item.update(req.body).then(() => res.json({ success: true })))
+    Item.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: { name: req.body.name } },
+        { new: true },
+    )
+        .then(item => res.json(item))
         .catch(() => res.status(404).json({ success: false }));
 };
 

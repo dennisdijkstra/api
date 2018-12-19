@@ -1,8 +1,16 @@
-import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
+import {
+    ADD_ITEM,
+    GET_ITEMS,
+    UPDATE_ITEM,
+    DELETE_ITEM,
+    ITEMS_LOADING,
+    SET_IS_EDITABLE,
+} from '../actions/types';
 
 const initialState = {
     items: [],
     loading: false,
+    isEditable: '',
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +26,11 @@ export default (state = initialState, action) => {
             ...state,
             items: [action.payload, ...state.items],
         };
+    case UPDATE_ITEM:
+        return {
+            ...state,
+            items: state.items.map(item => (item._id === action.payload._id ? action.payload : item)),
+        };
     case DELETE_ITEM:
         return {
             ...state,
@@ -27,6 +40,11 @@ export default (state = initialState, action) => {
         return {
             ...state,
             loading: true,
+        };
+    case SET_IS_EDITABLE:
+        return {
+            ...state,
+            isEditable: action.payload,
         };
     default:
         return state;
