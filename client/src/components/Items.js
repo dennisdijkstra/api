@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getItems, addItem, updateItem, deleteItem, setIsEditable } from '../actions/itemActions';
+import * as actions from '../actions/itemActions';
 
 class Items extends Component {
     static propTypes = {
@@ -16,35 +16,34 @@ class Items extends Component {
     };
 
     componentDidMount() {
-        const { getItems: get } = this.props;
-        get();
+        const { getItems } = this.props;
+        getItems();
     }
 
     addItem = () => {
-        const { addItem: add } = this.props;
+        const { addItem } = this.props;
         const newItem = {
             name: this.item.value,
         };
-
-        add(newItem);
-    }
-
-    showEdit = (id) => {
-        const { setIsEditable: setEditId } = this.props;
-        setEditId(id);
+        addItem(newItem);
     }
 
     updateItem = (id) => {
-        const { updateItem: update } = this.props;
+        const { updateItem } = this.props;
         const updatedItem = {
             name: this.update.value,
         };
-        update(id, updatedItem);
+        updateItem(id, updatedItem);
     }
 
     deleteItem = (id) => {
-        const { deleteItem: remove } = this.props;
-        remove(id);
+        const { deleteItem } = this.props;
+        deleteItem(id);
+    }
+
+    showEdit = (id) => {
+        const { setIsEditable } = this.props;
+        setIsEditable(id);
     }
 
     render() {
@@ -88,4 +87,4 @@ const mapStateToProps = state => ({
     item: state.item,
 });
 
-export default connect(mapStateToProps, { getItems, addItem, updateItem, deleteItem, setIsEditable })(Items);
+export default connect(mapStateToProps, actions)(Items);
