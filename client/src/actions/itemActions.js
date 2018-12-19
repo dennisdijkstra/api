@@ -1,4 +1,4 @@
-import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING } from './types';
+import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING, SET_IS_EDITABLE } from './types';
 
 export const setItemsLoading = () => (
     {
@@ -30,6 +30,13 @@ export const addItem = item => (dispatch) => {
             payload: data,
         }));
 };
+
+export const setIsEditable = id => (
+    {
+        type: SET_IS_EDITABLE,
+        payload: id,
+    }
+);
 
 export const deleteItem = id => (dispatch) => {
     fetch(`http://localhost:5000/api/items/${id}`, {

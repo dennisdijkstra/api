@@ -1,8 +1,9 @@
-import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
+import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING, SET_IS_EDITABLE } from '../actions/types';
 
 const initialState = {
     items: [],
     loading: false,
+    isEditable: '',
 };
 
 export default (state = initialState, action) => {
@@ -27,6 +28,11 @@ export default (state = initialState, action) => {
         return {
             ...state,
             loading: true,
+        };
+    case SET_IS_EDITABLE:
+        return {
+            ...state,
+            isEditable: action.payload,
         };
     default:
         return state;
