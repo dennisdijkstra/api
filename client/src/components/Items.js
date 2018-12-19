@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addItem, getItems, deleteItem, setIsEditable } from '../actions/itemActions';
+import { getItems, addItem, updateItem, deleteItem, setIsEditable } from '../actions/itemActions';
 
 class Items extends Component {
     static propTypes = {
         getItems: PropTypes.func.isRequired,
         addItem: PropTypes.func.isRequired,
-        setIsEditable: PropTypes.func.isRequired,
+        updateItem: PropTypes.func.isRequired,
         deleteItem: PropTypes.func.isRequired,
+        setIsEditable: PropTypes.func.isRequired,
         item: PropTypes.shape({
             items: PropTypes.arrayOf.isRequired,
         }).isRequired,
@@ -34,10 +35,11 @@ class Items extends Component {
     }
 
     updateItem = (id) => {
-        const { setIsEditable: setEditId } = this.props;
-        console.log(id);
-        console.log(this.edit.value);
-        setEditId('');
+        const { updateItem: update } = this.props;
+        const updatedItem = {
+            name: this.update.value,
+        };
+        update(id, updatedItem);
     }
 
     deleteItem = (id) => {
@@ -65,7 +67,7 @@ class Items extends Component {
                         <li key={_id} style={{ listStyle: 'none' }}>
                             { isEditable === _id
                                 ? <>
-                                    <input type="text" ref={item => this.edit = item} />
+                                    <input type="text" ref={item => this.update = item} />
                                     <button type="button" onClick={() => this.updateItem(_id)} style={{ display: 'inline-block' }}>Update</button>
                                 </>
                                 : <>
@@ -86,4 +88,4 @@ const mapStateToProps = state => ({
     item: state.item,
 });
 
-export default connect(mapStateToProps, { addItem, getItems, deleteItem, setIsEditable })(Items);
+export default connect(mapStateToProps, { getItems, addItem, updateItem, deleteItem, setIsEditable })(Items);

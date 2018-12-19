@@ -1,4 +1,11 @@
-import { ADD_ITEM, GET_ITEMS, DELETE_ITEM, ITEMS_LOADING, SET_IS_EDITABLE } from '../actions/types';
+import {
+    ADD_ITEM,
+    GET_ITEMS,
+    UPDATE_ITEM,
+    DELETE_ITEM,
+    ITEMS_LOADING,
+    SET_IS_EDITABLE,
+} from '../actions/types';
 
 const initialState = {
     items: [],
@@ -18,6 +25,11 @@ export default (state = initialState, action) => {
         return {
             ...state,
             items: [action.payload, ...state.items],
+        };
+    case UPDATE_ITEM:
+        return {
+            ...state,
+            items: state.items.map(item => (item._id === action.payload._id ? action.payload : item)),
         };
     case DELETE_ITEM:
         return {
