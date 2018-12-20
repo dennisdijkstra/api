@@ -1,9 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-
-const htmlPlugin = new HtmlWebPackPlugin({
-    template: './client/src/index.html',
-    filename: './index.html',
-});
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     module: {
@@ -18,7 +14,31 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]',
+                        },
+                    },
+                    'postcss-loader',
+                ],
+            },
         ],
     },
-    plugins: [htmlPlugin],
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: './client/src/index.html',
+            filename: './index.html',
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'app.css',
+        }),
+    ],
 };
