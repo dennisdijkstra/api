@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 exports.userCreate = (req, res) => {
@@ -19,7 +18,4 @@ exports.userCreate = (req, res) => {
                 .catch(errr => console.log(errr));
         });
     });
-
-    newUser.save()
-        .then(user => res.json(user));
 };
