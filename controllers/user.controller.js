@@ -61,3 +61,11 @@ exports.userLogin = (req, res) => {
         });
     });
 };
+
+exports.userCurrent = (req, res) => {
+    res.json({
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email,
+    });
+};
