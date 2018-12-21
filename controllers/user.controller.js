@@ -31,8 +31,6 @@ exports.userLogin = (req, res) => {
             return res.status(404).json({ emailnotfound: 'Email not found' });
         }
 
-        console.log(user);
-
         bcrypt.compare(password, user.password).then((isMatch) => {
             if (isMatch) {
                 const payload = {
