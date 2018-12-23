@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon server.js",
-    "webpack": "webpack-dev-server --mode development ./client/src/index.js --open",
-    "dev": "webpack --mode development ./client/src/index.js --output ./client/dist/bundle.js --open",
+    "webpack": "webpack-dev-server --mode development ./client/src/client.js --open",
+    "dev": "webpack --mode development ./client/src/client.js --output ./client/dist/bundle.js --open",
     "client": "concurrently \"npm:dev\" \"npm:webpack\"",
-    "build": "webpack --mode production ./client/src/index.js --output ./client/dist/bundle.js --open",
+    "build": "webpack --mode production ./client/src/client.js --output ./client/dist/bundle.js --open",
     "start": "concurrently \"npm:server\" \"npm:client\""
   },
   "proxy": "http://localhost:5000",

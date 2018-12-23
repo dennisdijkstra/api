@@ -5,8 +5,10 @@ import Register from './register/register';
 const routes = {
     path: '/',
     async action({ next }) {
-        const component = await next();
-        return component;
+        const route = await next();
+        route.title = `${route.title || 'Untitled Page'}`;
+        route.description = route.description || '';
+        return route;
     },
     children: [
         {
