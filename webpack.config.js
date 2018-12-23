@@ -36,8 +36,9 @@ module.exports = {
         port: 3000,
         open: true,
         proxy: {
-            '/': 'http://localhost:5000/api',
+            '/api': 'http://localhost:5000',
         },
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebPackPlugin({
