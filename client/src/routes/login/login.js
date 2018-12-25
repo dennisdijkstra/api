@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
+import Field from '../../components/formik/Field';
 
 class Register extends Component {
     submit = (values, { setSubmitting, setStatus }) => {
@@ -19,15 +20,13 @@ class Register extends Component {
                 }}
                 onSubmit={this.submit}
             >
-                {({ dirty, isSubmitting }) => {
-                    return (
-                        <Form>
-                            <Field type="text" name="email" placeholder="Email" />
-                            <Field type="password" name="password" placeholder="Password" />
-                            <button disabled={!dirty || isSubmitting} type="submit">Login</button>
-                        </Form>
-                    );
-                }}
+                {({ dirty, isSubmitting }) => (
+                    <Form>
+                        <Field name="email" label="E-mail" />
+                        <Field name="password" label="" />
+                        <button disabled={!dirty || isSubmitting} type="submit">Login</button>
+                    </Form>
+                )}
             </Formik>
         );
     }

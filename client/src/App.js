@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-import Items from './components/Items';
+import Items from './components/items/Items';
 
 class App extends Component {
     render() {
