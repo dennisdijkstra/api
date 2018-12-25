@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Formik, Form } from 'formik';
+import ValidationSchema from '../../validation/ValidationSchema';
 import Field from '../../components/formik/Field';
 
 class Register extends Component {
@@ -12,6 +13,7 @@ class Register extends Component {
     };
 
     render() {
+        console.log(ValidationSchema);
         return (
             <Formik
                 initialValues={{
@@ -19,11 +21,12 @@ class Register extends Component {
                     password: '',
                 }}
                 onSubmit={this.submit}
+                validationSchema={ValidationSchema}
             >
                 {({ dirty, isSubmitting }) => (
                     <Form>
                         <Field name="email" label="E-mail" />
-                        <Field name="password" label="" />
+                        <Field name="password" label="Password" />
                         <button disabled={!dirty || isSubmitting} type="submit">Login</button>
                     </Form>
                 )}
