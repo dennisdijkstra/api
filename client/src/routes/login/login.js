@@ -6,14 +6,12 @@ import Field from '../../components/formik/Field';
 class Register extends Component {
     submit = (values, { setSubmitting, setStatus }) => {
         if (values) {
-            console.log(values);
             setSubmitting(false);
             setStatus({ submitSucceeded: true });
         }
     };
 
     render() {
-        console.log(ValidationSchema);
         return (
             <Formik
                 initialValues={{
