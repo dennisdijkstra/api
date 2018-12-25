@@ -1,5 +1,28 @@
 body {
     margin: 0;
+    color: #444;
+}
+
+h1 {
+    margin: 0px 0 48px;
+    font-size: 30px;
+}
+
+button {
+    min-width: 100%;
+    padding: 15px 10px;
+    border: none;
+    color: #fff;
+    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 100%);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input,
+button {
+    &:focus {
+        outline: 0;
+    }
 }
 
 .container {
