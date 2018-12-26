@@ -5,8 +5,18 @@ import {
     GET_CURRENT_USER,
 } from './types';
 
-export const registerUser = () => {
-
+export const registerUser = (user, history) => {
+    fetch('/api/users/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+    })
+        .then(() => history.push('/login'))
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 export const loginUser = () => {
