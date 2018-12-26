@@ -1,17 +1,30 @@
+import jwt_decode from 'jwt-decode';
 import {
     USER_LOADING,
     SET_CURRENT_USER,
     GET_CURRENT_USER,
 } from './types';
 
-export const setUserLoading = () => (
-    
-);
+export const registerUser = () => {
 
-export const setCurrentUser = () => (
+};
 
-);
+export const loginUser = () => {
+
+};
+
+export const setUserLoading = () => {
+
+};
+
+export const setCurrentUser = () => {
+
+};
 
 export const getCurrentUser = () => {
+
+};
+
+export const logOutUser = () => {
 
 };
