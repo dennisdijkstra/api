@@ -23,6 +23,7 @@ exports.userCreate = (req, res) => {
 };
 
 exports.userLogin = (req, res) => {
+    console.log('login');
     const email = req.body.email;
     const password = req.body.password;
 
