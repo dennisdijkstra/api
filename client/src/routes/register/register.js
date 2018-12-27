@@ -9,7 +9,7 @@ import s from './register.css';
 
 
 class Register extends Component {
-    submit = async (values, { setErrors }) => {
+    submit = async (values, { setErrors, setSubmitting }) => {
         if (values) {
             const response = await fetch('/api/users/register', {
                 method: 'POST',
@@ -21,6 +21,7 @@ class Register extends Component {
             const json = await response.json();
 
             if (response.status !== 200) {
+                setSubmitting(false);
                 setErrors({ email: json.message });
             } else {
                 history.push('/');

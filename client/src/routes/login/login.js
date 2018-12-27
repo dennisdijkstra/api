@@ -15,7 +15,7 @@ class Login extends Component {
         setCurrentUser: PropTypes.func.isRequired,
     };
 
-    submit = async (values, { setErrors }) => {
+    submit = async (values, { setErrors, setSubmitting }) => {
         const { setCurrentUser: setUser } = this.props;
 
         if (values) {
@@ -29,6 +29,7 @@ class Login extends Component {
             const json = await response.json();
 
             if (response.status !== 200) {
+                setSubmitting(false);
                 setErrors({ [json.field]: json.message });
             } else {
                 const { token } = json;
