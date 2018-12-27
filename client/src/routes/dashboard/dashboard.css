@@ -1,3 +1,7 @@
 .dashboard {
     padding: 36px;
+
+    button {
+        min-width: 200px;
+    }
 }

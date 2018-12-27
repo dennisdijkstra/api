@@ -66,7 +66,8 @@ exports.userLogin = (req, res) => {
 exports.userCurrent = (req, res) => {
     res.json({
         id: req.user.id,
-        name: req.user.name,
+        firstname: req.user.firstname,
+        lastname: req.user.lastname,
         email: req.user.email,
     });
 };
