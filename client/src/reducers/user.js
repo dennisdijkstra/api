@@ -20,7 +20,6 @@ export default (state = initialState, action) => {
     case SET_CURRENT_USER:
         return {
             ...state,
-            items: action.payload,
             isAuthenticated: true,
             user: action.payload,
         };

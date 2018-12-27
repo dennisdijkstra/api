@@ -26,23 +26,25 @@ class Login extends Component {
     render() {
         return (
             <div className={s.login}>
-                <h1>Log into your account</h1>
-                <Formik
-                    initialValues={{
-                        email: '',
-                        password: '',
-                    }}
-                    onSubmit={this.submit}
-                    validationSchema={ValidationSchema}
-                >
-                    {({ dirty, isSubmitting }) => (
-                        <Form>
-                            <Field name="email" label="E-mail" placeholder="E-mail" />
-                            <Field name="password" label="Password" placeholder="Password" />
-                            <button disabled={!dirty || isSubmitting} type="submit">Login</button>
-                        </Form>
-                    )}
-                </Formik>
+                <div className={s.form}>
+                    <h1>Log into your account</h1>
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            password: '',
+                        }}
+                        onSubmit={this.submit}
+                        validationSchema={ValidationSchema}
+                    >
+                        {({ dirty, isSubmitting }) => (
+                            <Form>
+                                <Field name="email" label="E-mail" placeholder="E-mail" />
+                                <Field name="password" label="Password" placeholder="Password" />
+                                <button disabled={!dirty || isSubmitting} type="submit">Login</button>
+                            </Form>
+                        )}
+                    </Formik>
+                </div>
             </div>
         );
     }

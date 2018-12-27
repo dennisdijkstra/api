@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/user';
 import ValidationSchema from '../../validation/ValidationSchema';
 import Field from '../../components/formik/Field';
+import s from './register.css';
 
 
 class Register extends Component {
@@ -24,28 +25,30 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Register for an account.</h1>
-                <Formik
-                    initialValues={{
-                        firstname: '',
-                        lastname: '',
-                        email: '',
-                        password: '',
-                    }}
-                    onSubmit={this.submit}
-                    validationSchema={ValidationSchema}
-                >
-                    {({ dirty, isSubmitting }) => (
-                        <Form>
-                            <Field name="firstname" label="First name" placeholder="First name" />
-                            <Field name="lastname" label="Last name" placeholder="Last name" />
-                            <Field name="email" label="E-mail" placeholder="E-mail" />
-                            <Field name="password" label="Password" placeholder="Password" />
-                            <button disabled={!dirty || isSubmitting} type="submit">Register</button>
-                        </Form>
-                    )}
-                </Formik>
+            <div className={s.register}>
+                <div className={s.form}>
+                    <h1>Register for an account.</h1>
+                    <Formik
+                        initialValues={{
+                            firstname: '',
+                            lastname: '',
+                            email: '',
+                            password: '',
+                        }}
+                        onSubmit={this.submit}
+                        validationSchema={ValidationSchema}
+                    >
+                        {({ dirty, isSubmitting }) => (
+                            <Form>
+                                <Field name="firstname" label="First name" placeholder="First name" />
+                                <Field name="lastname" label="Last name" placeholder="Last name" />
+                                <Field name="email" label="E-mail" placeholder="E-mail" />
+                                <Field name="password" label="Password" placeholder="Password" />
+                                <button disabled={!dirty || isSubmitting} type="submit">Register</button>
+                            </Form>
+                        )}
+                    </Formik>
+                </div>
             </div>
         );
     }
