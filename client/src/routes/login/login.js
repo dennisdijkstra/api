@@ -2,24 +2,42 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/user';
+import jwtDecode from 'jwt-decode';
+import setCurrentUser from '../../actions/user';
 import { LoginValidation } from '../../validation/ValidationSchema';
+import history from '../../history';
 import Field from '../../components/formik/Field';
 import s from './login.css';
 
 
 class Login extends Component {
     static propTypes = {
-        loginUser: PropTypes.func.isRequired,
+        setCurrentUser: PropTypes.func.isRequired,
     };
 
-    submit = (values, { setSubmitting, setStatus }) => {
-        const { loginUser } = this.props;
+    submit = async (values, { setErrors }) => {
+        const { setCurrentUser: setUser } = this.props;
 
         if (values) {
-            loginUser(values);
-            setSubmitting(false);
-            setStatus({ submitSucceeded: true });
+            const response = await fetch('/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+            const json = await response.json();
+
+            if (response.status !== 200) {
+                setErrors({ [json.field]: json.message });
+            } else {
+                const { token } = json;
+                const decoded = jwtDecode(token);
+
+                localStorage.setItem('jwtToken', token);
+                setUser(decoded);
+                history.push('/dashboard');
+            }
         }
     };
 
@@ -54,4 +72,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, actions)(Login);
+export default connect(mapStateToProps, { setCurrentUser })(Login);

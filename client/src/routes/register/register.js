@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/user';
+import setCurrentUser from '../../actions/user';
 import { RegisterValidation } from '../../validation/ValidationSchema';
 import Field from '../../components/formik/Field';
 import history from '../../history';
@@ -63,4 +63,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, actions)(Register);
+export default connect(mapStateToProps, { setCurrentUser })(Register);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/user';
+import setCurrentUser from '../../actions/user';
+import history from '../../history';
 import s from './dashboard.css';
 
 
@@ -13,13 +14,15 @@ class Dashboard extends Component {
                 lastname: PropTypes.string,
             }),
         }).isRequired,
-        logOutUser: PropTypes.func.isRequired,
+        setCurrentUser: PropTypes.func.isRequired,
     };
 
     logOut = () => {
-        const { logOutUser } = this.props;
+        const { setCurrentUser: setUser } = this.props;
 
-        logOutUser();
+        localStorage.removeItem('jwtToken');
+        setUser({});
+        history.push('/');
     };
 
     render() {
@@ -39,4 +42,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, actions)(Dashboard);
+export default connect(mapStateToProps, { setCurrentUser })(Dashboard);
