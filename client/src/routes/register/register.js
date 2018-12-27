@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/user';
-import ValidationSchema from '../../validation/ValidationSchema';
+import { RegisterValidation } from '../../validation/ValidationSchema';
 import Field from '../../components/formik/Field';
 import s from './register.css';
 
@@ -36,7 +36,7 @@ class Register extends Component {
                             password: '',
                         }}
                         onSubmit={this.submit}
-                        validationSchema={ValidationSchema}
+                        validationSchema={RegisterValidation}
                     >
                         {({ dirty, isSubmitting }) => (
                             <Form>
