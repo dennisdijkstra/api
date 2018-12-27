@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/user';
 import { RegisterValidation } from '../../validation/ValidationSchema';
 import Field from '../../components/formik/Field';
+import history from '../../history';
 import s from './register.css';
 
 
 class Register extends Component {
-    static propTypes = {
-        registerUser: PropTypes.func.isRequired,
-    };
-
-    submit = (values, { setSubmitting, setStatus }) => {
-        const { registerUser } = this.props;
-
+    submit = async (values, { setErrors }) => {
         if (values) {
-            registerUser(values);
-            setSubmitting(false);
-            setStatus({ submitSucceeded: true });
+            const response = await fetch('/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+            const json = await response.json();
+
+            if (response.status !== 200) {
+                setErrors({ email: json.message });
+            } else {
+                history.push('/');
+            }
         }
     };
 

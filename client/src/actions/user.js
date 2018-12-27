@@ -19,20 +19,6 @@ export const setCurrentUser = decoded => (
     }
 );
 
-export const registerUser = user => () => {
-    fetch('/api/users/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-    })
-        .then(() => history.push('/'))
-        .catch((err) => {
-            console.log(err);
-        });
-};
-
 export const loginUser = user => (dispatch) => {
     fetch('/api/users/login', {
         method: 'POST',
