@@ -46,7 +46,6 @@ export const loginUser = user => (dispatch) => {
             const { token } = data;
             localStorage.setItem('jwtToken', token);
             const decoded = jwtDecode(token);
-            console.log(decoded);
             dispatch(setCurrentUser(decoded));
         })
         .then(() => history.push('/dashboard'))
