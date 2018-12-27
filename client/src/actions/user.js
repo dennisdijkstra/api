@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import history from '../history';
 import {
     USER_LOADING,
     SET_CURRENT_USER,
@@ -18,7 +19,7 @@ export const setCurrentUser = decoded => (
     }
 );
 
-export const registerUser = (user, history) => () => {
+export const registerUser = user => () => {
     fetch('/api/users/register', {
         method: 'POST',
         headers: {
@@ -26,7 +27,7 @@ export const registerUser = (user, history) => () => {
         },
         body: JSON.stringify(user),
     })
-        .then(() => history.push('/login'))
+        .then(() => history.push('/'))
         .catch((err) => {
             console.log(err);
         });
@@ -40,12 +41,15 @@ export const loginUser = user => (dispatch) => {
         },
         body: JSON.stringify(user),
     })
-        .then((res) => {
-            const { token } = res.data;
+        .then(response => response.json())
+        .then((data) => {
+            const { token } = data;
             localStorage.setItem('jwtToken', token);
             const decoded = jwtDecode(token);
+            console.log(decoded);
             dispatch(setCurrentUser(decoded));
         })
+        .then(() => history.push('/dashboard'))
         .catch((err) => {
             console.log(err);
         });

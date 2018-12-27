@@ -5,7 +5,8 @@ const User = require('../models/User');
 
 exports.userCreate = (req, res) => {
     const newUser = new User({
-        name: req.body.name,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         email: req.body.email,
         password: req.body.password,
     });
@@ -35,7 +36,9 @@ exports.userLogin = (req, res) => {
             if (isMatch) {
                 const payload = {
                     id: user.id,
-                    name: user.name,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    email: user.email,
                 };
 
                 jwt.sign(

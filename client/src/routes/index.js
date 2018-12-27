@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './login/login';
 import Register from './register/register';
+import Dashboard from './dashboard/dashboard';
 
 const routes = {
     path: '/',
@@ -23,6 +24,13 @@ const routes = {
             action: () => ({
                 title: 'Register',
                 component: <Register />,
+            }),
+        },
+        {
+            path: '/dashboard',
+            action: () => ({
+                title: 'Dashboard',
+                component: <Dashboard />,
             }),
         },
         {
