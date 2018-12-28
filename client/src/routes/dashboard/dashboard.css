@@ -1,8 +1,10 @@
 .dashboard {
     padding: 36px;
 
-    button {
+    .button {
         min-width: 200px;
-        margin-right: 24px;
+        padding: 15px 10px;
+        color: #fff;
+        background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 100%);
     }
 }

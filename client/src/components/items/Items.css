@@ -1,46 +1,18 @@
-body {
-    margin: 0;
-}
-
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 0;
-    color: #0000ff;
-    font-family: helvetica;
-    font-weight: bold;
+    padding: 36px 0;
     font-size: 16px;
 
     & button {
-        display: inline-block;
-        color: #0000ff;
-        cursor: pointer;
+        color: var(--egg-blue);
         font-size: 10px;
-        border: none;
-
-        &:focus {
-            outline: 0;
-        }
-
-        &:hover {
-            color: red;
-        }
     }
 
     & input {
-        min-width: 200px;
+        display: inline-block;
+        width: 200px;
         margin-right: 24px;
-        padding: 11.5px 0;
         border: none;
-        border-bottom: 1px solid #0000ff;
-        font-size: 16px;
-        color: #0000ff;
-
-        &:focus {
-            outline: 0;
-        }
+        border-bottom: 1px solid var(--egg-blue);
     }
 }
 
@@ -62,8 +34,4 @@ body {
             padding: 12px 0;
         }
     }
-}
-
-::-webkit-input-placeholder {
-  color: #0000ff;
 }

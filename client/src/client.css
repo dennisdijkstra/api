@@ -1,5 +1,13 @@
+:root {
+    --charcoal: #444;
+    --blue: #0000ff;
+    --red: #ff0000;
+    --electric-violet: #fc00ff;
+    --egg-blue: #00dbde;
+}
+
 body {
-    color: #444;
+    color: var(--charcoal);
     font-family: 'Helvetica';
 }
 
@@ -9,12 +17,9 @@ h1 {
 }
 
 button {
-    min-width: 100%;
-    padding: 15px 10px;
-    border: none;
-    color: #fff;
-    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 100%);
+    margin-right: 24px;
     font-size: 16px;
+    border: none;
     cursor: pointer;
 }
 
