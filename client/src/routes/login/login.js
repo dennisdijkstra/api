@@ -7,6 +7,7 @@ import setCurrentUser from '../../actions/user';
 import { LoginValidation } from '../../validation/ValidationSchema';
 import history from '../../history';
 import Field from '../../components/formik/Field';
+import Link from '../../components/link/Link';
 import s from './login.css';
 
 
@@ -56,11 +57,14 @@ class Login extends Component {
                         validationSchema={LoginValidation}
                     >
                         {({ dirty, isSubmitting }) => (
-                            <Form>
-                                <Field name="email" label="E-mail" placeholder="E-mail" />
-                                <Field name="password" label="Password" placeholder="Password" />
-                                <button disabled={!dirty || isSubmitting} type="submit">Login</button>
-                            </Form>
+                            <>
+                                <Form>
+                                    <Field name="email" label="E-mail" placeholder="E-mail" />
+                                    <Field name="password" label="Password" placeholder="Password" />
+                                    <button disabled={!dirty || isSubmitting} type="submit">Login</button>
+                                </Form>
+                                <Link to="/register" className={s.link}>Register for an account</Link>
+                            </>
                         )}
                     </Formik>
                 </div>

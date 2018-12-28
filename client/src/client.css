@@ -8,6 +8,11 @@ h1 {
     font-size: 30px;
 }
 
+a {
+    color: #000;
+    text-decoration: none;
+}
+
 button {
     min-width: 100%;
     padding: 15px 10px;
