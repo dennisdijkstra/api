@@ -47,7 +47,7 @@ class Dashboard extends Component {
         return (
             <div className={s.dashboard}>
                 <h1>Dashboard</h1>
-                <p>You&#39;re Logged in as {firstname} {lastname}</p>
+                <p>You&#39;re logged in as {firstname} {lastname}</p>
                 <button type="button" onClick={this.getCurrentUser}>Get current user</button>
                 <button type="button" onClick={this.logOut}>Logout</button>
             </div>
