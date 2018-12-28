@@ -1,10 +1,11 @@
 import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'normalize.css';
 import UniversalRouter from 'universal-router';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
-import { setCurrentUser } from './actions/user';
+import setCurrentUser from './actions/user';
 import history from './history';
 import routes from './routes';
 import store from './store';

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/user';
+import setCurrentUser from '../../actions/user';
+import setAuthToken from '../../utils/setAuthToken';
+import history from '../../history';
+import Items from '../../components/items/Items';
 import s from './dashboard.css';
 
 
@@ -13,13 +16,30 @@ class Dashboard extends Component {
                 lastname: PropTypes.string,
             }),
         }).isRequired,
-        logOutUser: PropTypes.func.isRequired,
+        setCurrentUser: PropTypes.func.isRequired,
+    };
+
+    getCurrentUser = async () => {
+        const response = await fetch('/api/users/currentuser', {
+            headers: setAuthToken({
+                'Content-Type': 'application/json',
+            }),
+        });
+        const json = await response.json();
+
+        if (response.status !== 200) {
+            console.log(json);
+        } else {
+            console.log(json);
+        }
     };
 
     logOut = () => {
-        const { logOutUser } = this.props;
+        const { setCurrentUser: setUser } = this.props;
 
-        logOutUser();
+        localStorage.removeItem('jwtToken');
+        setUser({});
+        history.push('/');
     };
 
     render() {
@@ -28,8 +48,10 @@ class Dashboard extends Component {
         return (
             <div className={s.dashboard}>
                 <h1>Dashboard</h1>
-                <p>You&#39;re Logged in as {firstname} {lastname}</p>
+                <p>You&#39;re logged in as {firstname} {lastname}</p>
+                <button type="button" onClick={this.getCurrentUser}>Get current user</button>
                 <button type="button" onClick={this.logOut}>Logout</button>
+                <Items />
             </div>
         );
     }
@@ -39,4 +61,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, actions)(Dashboard);
+export default connect(mapStateToProps, { setCurrentUser })(Dashboard);

@@ -8,6 +8,7 @@ exports.items = (req, res) => {
 exports.itemCreate = (req, res) => {
     const newItem = new Item({
         name: req.body.name,
+        userId: req.body.userId,
     });
 
     newItem.save()

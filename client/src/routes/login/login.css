@@ -8,4 +8,14 @@
     button {
         margin-top: 24px;
     }
+
+    form {
+        margin-bottom: 24px;
+    }
+}
+
+.link {
+    display: block;
+    text-align: center;
+    font-size: 12px;
 }

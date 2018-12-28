@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/user';
-import ValidationSchema from '../../validation/ValidationSchema';
+import setCurrentUser from '../../actions/user';
+import { RegisterValidation } from '../../validation/ValidationSchema';
 import Field from '../../components/formik/Field';
+import history from '../../history';
+import Link from '../../components/link/Link';
 import s from './register.css';
 
 
 class Register extends Component {
-    static propTypes = {
-        registerUser: PropTypes.func.isRequired,
-    };
-
-    submit = (values, { setSubmitting, setStatus }) => {
-        const { registerUser } = this.props;
-
+    submit = async (values, { setErrors, setSubmitting }) => {
         if (values) {
-            registerUser(values);
-            setSubmitting(false);
-            setStatus({ submitSucceeded: true });
+            const response = await fetch('/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+            const json = await response.json();
+
+            if (response.status !== 200) {
+                setSubmitting(false);
+                setErrors({ email: json.message });
+            } else {
+                history.push('/');
+            }
         }
     };
 
@@ -27,7 +34,7 @@ class Register extends Component {
         return (
             <div className={s.register}>
                 <div className={s.form}>
-                    <h1>Register for an account.</h1>
+                    <h1>Register for an account</h1>
                     <Formik
                         initialValues={{
                             firstname: '',
@@ -36,16 +43,19 @@ class Register extends Component {
                             password: '',
                         }}
                         onSubmit={this.submit}
-                        validationSchema={ValidationSchema}
+                        validationSchema={RegisterValidation}
                     >
                         {({ dirty, isSubmitting }) => (
-                            <Form>
-                                <Field name="firstname" label="First name" placeholder="First name" />
-                                <Field name="lastname" label="Last name" placeholder="Last name" />
-                                <Field name="email" label="E-mail" placeholder="E-mail" />
-                                <Field name="password" label="Password" placeholder="Password" />
-                                <button disabled={!dirty || isSubmitting} type="submit">Register</button>
-                            </Form>
+                            <>
+                                <Form>
+                                    <Field name="firstname" label="First name" placeholder="First name" />
+                                    <Field name="lastname" label="Last name" placeholder="Last name" />
+                                    <Field name="email" label="E-mail" placeholder="E-mail" />
+                                    <Field name="password" label="Password" placeholder="Password" />
+                                    <button disabled={!dirty || isSubmitting} type="submit">Register</button>
+                                </Form>
+                                <Link to="/" className={s.link}>Login to your account</Link>
+                            </>
                         )}
                     </Formik>
                 </div>
@@ -58,4 +68,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, actions)(Register);
+export default connect(mapStateToProps, { setCurrentUser })(Register);
