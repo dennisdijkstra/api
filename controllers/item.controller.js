@@ -1,10 +1,5 @@
 const Item = require('../models/Item');
 
-exports.items = (req, res) => {
-    Item.find()
-        .then(items => res.json(items));
-};
-
 exports.itemCreate = (req, res) => {
     const newItem = new Item({
         name: req.body.name,

@@ -6,6 +6,7 @@ import {
     ITEMS_LOADING,
     SET_IS_EDITABLE,
 } from './types';
+import setAuthToken from '../utils/setAuthToken';
 
 export const setItemsLoading = () => (
     {
@@ -22,7 +23,11 @@ export const setIsEditable = id => (
 
 export const getItems = () => (dispatch) => {
     dispatch(setItemsLoading());
-    fetch('/api/items')
+    fetch('/api/users/dashboard', {
+        headers: setAuthToken({
+            'Content-Type': 'application/json',
+        }),
+    })
         .then(response => response.json())
         .then(data => dispatch({
             type: GET_ITEMS,
