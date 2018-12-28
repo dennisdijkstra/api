@@ -14,6 +14,11 @@ class Items extends Component {
         item: PropTypes.shape({
             items: PropTypes.arrayOf.isRequired,
         }).isRequired,
+        user: PropTypes.shape({
+            user: PropTypes.shape({
+                id: PropTypes.string.isRequired,
+            }),
+        }).isRequired,
     };
 
     componentDidMount() {
@@ -22,9 +27,10 @@ class Items extends Component {
     }
 
     addItem = () => {
-        const { addItem } = this.props;
+        const { addItem, user: { user: { id } } } = this.props;
         const newItem = {
             name: this.item.value,
+            userId: id,
         };
         addItem(newItem);
     }
@@ -48,6 +54,7 @@ class Items extends Component {
     }
 
     render() {
+        console.log(this.props);
         const { item: { items, isEditable } } = this.props;
 
         return (
@@ -87,6 +94,7 @@ class Items extends Component {
 
 const mapStateToProps = state => ({
     item: state.item,
+    user: state.user,
 });
 
 export default connect(mapStateToProps, actions)(Items);

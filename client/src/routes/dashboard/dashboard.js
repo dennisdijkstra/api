@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import setCurrentUser from '../../actions/user';
 import setAuthToken from '../../utils/setAuthToken';
 import history from '../../history';
+import Items from '../../components/items/Items';
 import s from './dashboard.css';
 
 
@@ -50,6 +51,7 @@ class Dashboard extends Component {
                 <p>You&#39;re logged in as {firstname} {lastname}</p>
                 <button type="button" onClick={this.getCurrentUser}>Get current user</button>
                 <button type="button" onClick={this.logOut}>Logout</button>
+                <Items />
             </div>
         );
     }
