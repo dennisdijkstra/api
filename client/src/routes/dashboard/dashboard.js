@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import setCurrentUser from '../../actions/user';
+import setAuthToken from '../../utils/setAuthToken';
 import history from '../../history';
 import s from './dashboard.css';
 
@@ -15,6 +16,21 @@ class Dashboard extends Component {
             }),
         }).isRequired,
         setCurrentUser: PropTypes.func.isRequired,
+    };
+
+    getCurrentUser = async () => {
+        const response = await fetch('/api/users/currentuser', {
+            headers: setAuthToken({
+                'Content-Type': 'application/json',
+            }),
+        });
+        const json = await response.json();
+
+        if (response.status !== 200) {
+            console.log(json);
+        } else {
+            console.log(json);
+        }
     };
 
     logOut = () => {
@@ -32,6 +48,7 @@ class Dashboard extends Component {
             <div className={s.dashboard}>
                 <h1>Dashboard</h1>
                 <p>You&#39;re Logged in as {firstname} {lastname}</p>
+                <button type="button" onClick={this.getCurrentUser}>Get current user</button>
                 <button type="button" onClick={this.logOut}>Logout</button>
             </div>
         );

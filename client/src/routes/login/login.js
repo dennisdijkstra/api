@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
+import setAuthToken from '../../utils/setAuthToken';
 import setCurrentUser from '../../actions/user';
 import { LoginValidation } from '../../validation/ValidationSchema';
 import history from '../../history';
@@ -22,9 +23,9 @@ class Login extends Component {
         if (values) {
             const response = await fetch('/api/users/login', {
                 method: 'POST',
-                headers: {
+                headers: setAuthToken({
                     'Content-Type': 'application/json',
-                },
+                }),
                 body: JSON.stringify(values),
             });
             const json = await response.json();
