@@ -1,4 +1,4 @@
 a {
-    color: #444;
+    color: var(--charcoal);
     text-decoration: none;
 }

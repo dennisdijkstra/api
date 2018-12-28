@@ -49,8 +49,8 @@ class Dashboard extends Component {
             <div className={s.dashboard}>
                 <h1>Dashboard</h1>
                 <p>You&#39;re logged in as {firstname} {lastname}</p>
-                <button type="button" onClick={this.getCurrentUser}>Get current user</button>
-                <button type="button" onClick={this.logOut}>Logout</button>
+                <button type="button" onClick={this.getCurrentUser} className={s.button}>Get current user</button>
+                <button type="button" onClick={this.logOut} className={s.button}>Logout</button>
                 <Items />
             </div>
         );

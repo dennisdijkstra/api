@@ -10,18 +10,22 @@ input {
     padding: 10px;
     font-size: 16px;
     box-sizing: border-box;
+
+    &::placeholder {
+        color: var(--charcoal);
+    }
 }
 
 .error {
-    color: red;
+    color: var(--red);
 
     & input {
-        border: 1px solid red;
+        border: 1px solid var(--red);
     }
 
     & div {
         font-size: 12px;
-        color: red;
+        color: var(--red);
         margin-top: 6px;
     }
 }
