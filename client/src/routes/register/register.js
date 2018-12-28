@@ -12,7 +12,7 @@ import s from './register.css';
 class Register extends Component {
     submit = async (values, { setErrors, setSubmitting }) => {
         if (values) {
-            const response = await fetch('/api/users/register', {
+            const response = await fetch('/api/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

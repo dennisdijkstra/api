@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 const User = require('../models/User');
+const Item = require('../models/Item');
 
 exports.userCreate = (req, res) => {
     User.findOne({ email: req.body.email }).then((user) => {
@@ -74,4 +75,9 @@ exports.userCurrent = (req, res) => {
         lastname: req.user.lastname,
         email: req.user.email,
     });
+};
+
+exports.userItems = (req, res) => {
+    Item.find({ userId: req.user._id })
+        .then(items => res.json(items));
 };

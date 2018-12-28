@@ -54,7 +54,6 @@ class Items extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { item: { items, isEditable } } = this.props;
 
         return (

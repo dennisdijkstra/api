@@ -21,7 +21,7 @@ class Login extends Component {
         const { setCurrentUser: setUser } = this.props;
 
         if (values) {
-            const response = await fetch('/api/users/login', {
+            const response = await fetch('/api/user/login', {
                 method: 'POST',
                 headers: setAuthToken({
                     'Content-Type': 'application/json',
