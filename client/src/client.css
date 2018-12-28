@@ -1,16 +1,11 @@
 body {
-    margin: 0;
     color: #444;
+    font-family: 'Helvetica';
 }
 
 h1 {
     margin: 0px 0 48px;
     font-size: 30px;
-}
-
-a {
-    color: #000;
-    text-decoration: none;
 }
 
 button {
@@ -32,5 +27,4 @@ button {
 
 .container {
     min-height: 100vh;
-    font-family: 'Helvetica';
 }

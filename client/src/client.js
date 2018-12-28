@@ -1,6 +1,7 @@
 import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'normalize.css';
 import UniversalRouter from 'universal-router';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
