@@ -20,7 +20,7 @@ class Dashboard extends Component {
     };
 
     getCurrentUser = async () => {
-        const response = await fetch('/api/users/currentuser', {
+        const response = await fetch('/api/user/currentuser', {
             headers: setAuthToken({
                 'Content-Type': 'application/json',
             }),

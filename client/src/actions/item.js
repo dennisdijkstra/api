@@ -23,7 +23,7 @@ export const setIsEditable = id => (
 
 export const getItems = () => (dispatch) => {
     dispatch(setItemsLoading());
-    fetch('/api/users/dashboard', {
+    fetch('/api/user/items', {
         headers: setAuthToken({
             'Content-Type': 'application/json',
         }),
@@ -36,7 +36,7 @@ export const getItems = () => (dispatch) => {
 };
 
 export const addItem = item => (dispatch) => {
-    fetch('/api/items', {
+    fetch('/api/item', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const addItem = item => (dispatch) => {
 };
 
 export const updateItem = (id, item) => (dispatch) => {
-    fetch(`/api/items/${id}`, {
+    fetch(`/api/item/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export const updateItem = (id, item) => (dispatch) => {
 };
 
 export const deleteItem = id => (dispatch) => {
-    fetch(`/api/items/${id}`, {
+    fetch(`/api/item/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
