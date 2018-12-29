@@ -9,7 +9,6 @@ import { LoginValidation } from '../../validation/ValidationSchema';
 import history from '../../history';
 import Field from '../../components/formik/Field';
 import Link from '../../components/link/Link';
-import s from './login.css';
 
 
 class Login extends Component {
@@ -46,30 +45,28 @@ class Login extends Component {
 
     render() {
         return (
-            <div className={s.login}>
-                <div className={s.form}>
-                    <h1>Log into your account</h1>
-                    <Formik
-                        initialValues={{
-                            email: '',
-                            password: '',
-                        }}
-                        onSubmit={this.submit}
-                        validationSchema={LoginValidation}
-                    >
-                        {({ dirty, isSubmitting }) => (
-                            <>
-                                <Form>
-                                    <Field name="email" label="E-mail" placeholder="E-mail" />
-                                    <Field name="password" label="Password" placeholder="Password" />
-                                    <button disabled={!dirty || isSubmitting} type="submit">Login</button>
-                                </Form>
-                                <Link to="/register" className={s.link}>Register for an account</Link>
-                            </>
-                        )}
-                    </Formik>
-                </div>
-            </div>
+            <>
+                <h1>Log into your account</h1>
+                <Formik
+                    initialValues={{
+                        email: '',
+                        password: '',
+                    }}
+                    onSubmit={this.submit}
+                    validationSchema={LoginValidation}
+                >
+                    {({ dirty, isSubmitting }) => (
+                        <>
+                            <Form>
+                                <Field name="email" label="E-mail" placeholder="E-mail" />
+                                <Field name="password" label="Password" placeholder="Password" />
+                                <button disabled={!dirty || isSubmitting} type="submit">Login</button>
+                            </Form>
+                            <Link to="/register">Register for an account</Link>
+                        </>
+                    )}
+                </Formik>
+            </>
         );
     }
 }

@@ -6,7 +6,6 @@ import { RegisterValidation } from '../../validation/ValidationSchema';
 import Field from '../../components/formik/Field';
 import history from '../../history';
 import Link from '../../components/link/Link';
-import s from './register.css';
 
 
 class Register extends Component {
@@ -32,34 +31,32 @@ class Register extends Component {
 
     render() {
         return (
-            <div className={s.register}>
-                <div className={s.form}>
-                    <h1>Register for an account</h1>
-                    <Formik
-                        initialValues={{
-                            firstname: '',
-                            lastname: '',
-                            email: '',
-                            password: '',
-                        }}
-                        onSubmit={this.submit}
-                        validationSchema={RegisterValidation}
-                    >
-                        {({ dirty, isSubmitting }) => (
-                            <>
-                                <Form>
-                                    <Field name="firstname" label="First name" placeholder="First name" />
-                                    <Field name="lastname" label="Last name" placeholder="Last name" />
-                                    <Field name="email" label="E-mail" placeholder="E-mail" />
-                                    <Field name="password" label="Password" placeholder="Password" />
-                                    <button disabled={!dirty || isSubmitting} type="submit">Register</button>
-                                </Form>
-                                <Link to="/" className={s.link}>Login to your account</Link>
-                            </>
-                        )}
-                    </Formik>
-                </div>
-            </div>
+            <>
+                <h1>Register for an account</h1>
+                <Formik
+                    initialValues={{
+                        firstname: '',
+                        lastname: '',
+                        email: '',
+                        password: '',
+                    }}
+                    onSubmit={this.submit}
+                    validationSchema={RegisterValidation}
+                >
+                    {({ dirty, isSubmitting }) => (
+                        <>
+                            <Form>
+                                <Field name="firstname" label="First name" placeholder="First name" />
+                                <Field name="lastname" label="Last name" placeholder="Last name" />
+                                <Field name="email" label="E-mail" placeholder="E-mail" />
+                                <Field name="password" label="Password" placeholder="Password" />
+                                <button disabled={!dirty || isSubmitting} type="submit">Register</button>
+                            </Form>
+                            <Link to="/">Login to your account</Link>
+                        </>
+                    )}
+                </Formik>
+            </>
         );
     }
 }

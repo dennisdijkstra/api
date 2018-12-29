@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+
+    button {
+        margin-top: 24px;
+        width: 100%;
+        padding: 15px 10px;
+        color: #fff;
+        background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 100%);
+    }
+
+    form {
+        margin-bottom: 24px;
+    }
+    
+    a {
+        display: block;
+        text-align: center;
+        font-size: 12px;
+    }
+}
