@@ -1,8 +1,4 @@
 import React from 'react';
-import Prompt from '../components/templates/Prompt';
-import Login from './login/login';
-import Register from './register/register';
-import Dashboard from './dashboard/dashboard';
 
 const routes = {
     path: '/',
@@ -15,24 +11,15 @@ const routes = {
     children: [
         {
             path: '/',
-            action: () => ({
-                title: 'Login',
-                component: <Prompt><Login /></Prompt>,
-            }),
+            load: () => import(/* webpackChunkName: 'home' */ './login'),
         },
         {
             path: '/register',
-            action: () => ({
-                title: 'Register',
-                component: <Prompt><Register /></Prompt>,
-            }),
+            load: () => import(/* webpackChunkName: 'home' */ './register'),
         },
         {
             path: '/dashboard',
-            action: () => ({
-                title: 'Dashboard',
-                component: <Dashboard />,
-            }),
+            load: () => import(/* webpackChunkName: 'home' */ './dashboard'),
         },
         {
             path: '(.*)',
