@@ -17,14 +17,14 @@ if (localStorage.jwtToken) {
     store.dispatch(setCurrentUser(decoded));
 }
 
-const context = {};
 const container = document.getElementById('root');
-let appInstance;
 
 const render = async (location) => {
     try {
-        context.pathname = location.pathname;
-        context.query = queryString.parse(location.search);
+        const context = {
+            pathname: location.pathname,
+            query: queryString.parse(location.search),
+        };
         const route = await router.resolve(context);
 
         if (route.redirect) {
@@ -32,7 +32,7 @@ const render = async (location) => {
             return;
         }
 
-        appInstance = ReactDOM.render(
+        ReactDOM.render(
             <Provider store={store}>
                 <div className={s.container}>
                     {route.component}
