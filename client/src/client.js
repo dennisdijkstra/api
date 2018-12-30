@@ -2,12 +2,12 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
-import UniversalRouter from 'universal-router';
+import queryString from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
 import setCurrentUser from './actions/user';
 import history from './history';
-import routes from './routes';
+import router from './router';
 import store from './store';
 import s from './client.css';
 
@@ -17,20 +17,34 @@ if (localStorage.jwtToken) {
     store.dispatch(setCurrentUser(decoded));
 }
 
-const router = new UniversalRouter(routes);
+const container = document.getElementById('root');
 
-const render = (location) => {
-    router.resolve({ pathname: location.pathname }).then((route) => {
-        document.title = route.title;
+const render = async (location) => {
+    try {
+        const context = {
+            pathname: location.pathname,
+            query: queryString.parse(location.search),
+        };
+        const route = await router.resolve(context);
+
+        if (route.redirect) {
+            history.replace(route.redirect);
+            return;
+        }
+
         ReactDOM.render(
             <Provider store={store}>
                 <div className={s.container}>
                     {route.component}
                 </div>
             </Provider>,
-            document.getElementById('root'));
-    });
+            container,
+            () => document.title = route.title,
+        );
+    } catch (error) {
+        console.error(error);
+    }
 };
 
-render(history.location);
 history.listen(render);
+render(history.location);
