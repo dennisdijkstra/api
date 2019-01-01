@@ -26,7 +26,6 @@ class Dashboard extends Component {
     };
 
     render() {
-        console.log(this.props);
         const { children } = this.props;
         const { user: { user: { firstname } } } = this.props;
 
