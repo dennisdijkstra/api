@@ -26,13 +26,14 @@ class Dashboard extends Component {
     };
 
     render() {
+        console.log(this.props);
         const { children } = this.props;
         const { user: { user: { firstname } } } = this.props;
 
         return (
             <>
                 <header>
-                    <p>Hi, {firstname}</p>
+                    <p>Hi, <span style={{ fontWeight: 'bold' }}>{firstname}</span></p>
                     <button type="button" onClick={this.logOut} className={s.button}>Logout</button>
                 </header>
                 <div>
@@ -47,4 +48,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps)(Dashboard, { setCurrentUser });
+export default connect(mapStateToProps, { setCurrentUser })(Dashboard);
