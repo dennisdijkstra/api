@@ -1,11 +1,14 @@
 import React from 'react';
+import DashboardTemplate from '../../components/templates/dashboard/Dashboard';
 import Dashboard from './dashboard';
 
 const action = () => ({
     chunks: ['dashboard'],
     title: 'Dashboard',
     component: (
-        <Dashboard />
+        <DashboardTemplate>
+            <Dashboard />
+        </DashboardTemplate>
     ),
 });
 

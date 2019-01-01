@@ -1,5 +1,5 @@
 import React from 'react';
-import Prompt from '../../components/templates/Prompt';
+import Prompt from '../../components/templates/prompt/Prompt';
 import Register from './register';
 
 const action = () => ({

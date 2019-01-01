@@ -1,64 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import setCurrentUser from '../../actions/user';
-import setAuthToken from '../../utils/setAuthToken';
-import history from '../../history';
-import Items from '../../components/items/Items';
+import * as actions from '../../actions/item';
 import s from './dashboard.css';
 
 
 class Dashboard extends Component {
     static propTypes = {
-        user: PropTypes.shape({
-            user: PropTypes.shape({
-                firstname: PropTypes.string,
-                lastname: PropTypes.string,
-            }),
+        getItems: PropTypes.func.isRequired,
+        item: PropTypes.shape({
+            items: PropTypes.arrayOf.isRequired,
         }).isRequired,
-        setCurrentUser: PropTypes.func.isRequired,
     };
 
-    getCurrentUser = async () => {
-        const response = await fetch('/api/user/currentuser', {
-            headers: setAuthToken({
-                'Content-Type': 'application/json',
-            }),
-        });
-        const json = await response.json();
-
-        if (response.status !== 200) {
-            console.log(json);
-        } else {
-            console.log(json);
-        }
-    };
-
-    logOut = () => {
-        const { setCurrentUser: setUser } = this.props;
-
-        localStorage.removeItem('jwtToken');
-        setUser({});
-        history.push('/');
-    };
+    componentDidMount() {
+        const { getItems } = this.props;
+        getItems();
+    }
 
     render() {
-        const { user: { user: { firstname, lastname } } } = this.props;
+        const { item: { items } } = this.props;
 
         return (
             <div className={s.dashboard}>
                 <h1>Dashboard</h1>
-                <p>You&#39;re logged in as {firstname} {lastname}</p>
-                <button type="button" onClick={this.getCurrentUser} className={s.button}>Get current user</button>
-                <button type="button" onClick={this.logOut} className={s.button}>Logout</button>
-                <Items />
+                {items.map(({ _id, name }) => (
+                    <div key={_id} className={s.item}>{name}</div>
+                ))}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
+    item: state.item,
     user: state.user,
 });
 
-export default connect(mapStateToProps, { setCurrentUser })(Dashboard);
+export default connect(mapStateToProps, actions)(Dashboard);
