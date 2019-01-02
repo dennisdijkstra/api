@@ -7,8 +7,8 @@ import setAuthToken from '../../utils/setAuthToken';
 import setCurrentUser from '../../actions/user';
 import { LoginValidation } from '../../validation/ValidationSchema';
 import history from '../../history';
-import Field from '../../components/formik/Field';
-import Link from '../../components/link/Link';
+import Field from '../../components/atoms/formik/Field';
+import Link from '../../components/atoms/link/Link';
 
 
 class Login extends Component {

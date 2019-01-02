@@ -3,9 +3,9 @@ import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import setCurrentUser from '../../actions/user';
 import { RegisterValidation } from '../../validation/ValidationSchema';
-import Field from '../../components/formik/Field';
+import Field from '../../components/atoms/formik/Field';
 import history from '../../history';
-import Link from '../../components/link/Link';
+import Link from '../../components/atoms/link/Link';
 
 
 class Register extends Component {
