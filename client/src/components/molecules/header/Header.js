@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import setCurrentUser from '../../../actions/user';
-import history from '../../../history';
+import Dropdown from '../dropdown/Dropdown';
+import MenuItems from '../menuItems/MenuItems';
 import s from './Header.css';
 
 class Header extends Component {
@@ -13,24 +13,26 @@ class Header extends Component {
                 lastname: PropTypes.string,
             }),
         }).isRequired,
-        setCurrentUser: PropTypes.func.isRequired,
-    };
-
-    logOut = () => {
-        const { setCurrentUser: setUser } = this.props;
-
-        localStorage.removeItem('jwtToken');
-        setUser({});
-        history.push('/');
     };
 
     render() {
         const { user: { user: { firstname } } } = this.props;
 
         return (
-            <header>
-                <p>Hi, <span style={{ fontWeight: 'bold' }}>{firstname}</span></p>
-                <button type="button" onClick={this.logOut} className={s.button}>Logout</button>
+            <header className={s.header}>
+                <Dropdown
+                    render={({ toggleMenu, closeMenu }) => (
+                        <button
+                            type="button"
+                            onClick={() => toggleMenu()}
+                            onBlur={e => closeMenu(e)}
+                        >
+                            {firstname}
+                        </button>
+                    )}
+                >
+                    <MenuItems />
+                </Dropdown>
             </header>
         );
     }
@@ -40,4 +42,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, { setCurrentUser })(Header);
+export default connect(mapStateToProps)(Header);
