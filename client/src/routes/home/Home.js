@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/item';
-import s from './dashboard.css';
+import s from './home.css';
 
 
-class Dashboard extends Component {
+class Home extends Component {
     static propTypes = {
         getItems: PropTypes.func.isRequired,
         item: PropTypes.shape({
@@ -22,7 +22,7 @@ class Dashboard extends Component {
         const { item: { items } } = this.props;
 
         return (
-            <div className={s.dashboard}>
+            <div className={s.home}>
                 <h1>Dashboard</h1>
                 {items.map(({ _id, name }) => (
                     <div key={_id} className={s.item}>{name}</div>
@@ -37,4 +37,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, actions)(Dashboard);
+export default connect(mapStateToProps, actions)(Home);

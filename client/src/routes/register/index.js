@@ -1,6 +1,6 @@
 import React from 'react';
 import Prompt from '../../components/templates/prompt/Prompt';
-import Register from './register';
+import Register from './Register';
 
 const action = () => ({
     chunks: ['register'],

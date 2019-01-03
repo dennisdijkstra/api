@@ -1,6 +1,6 @@
 import React from 'react';
 import Prompt from '../../components/templates/prompt/Prompt';
-import Login from './login';
+import Login from './Login';
 
 const action = () => ({
     chunks: ['login'],

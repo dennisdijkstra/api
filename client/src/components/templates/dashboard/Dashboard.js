@@ -14,7 +14,7 @@ class Dashboard extends Component {
         return (
             <>
                 <Header />
-                <div>
+                <div className={s.content}>
                     {children}
                 </div>
             </>

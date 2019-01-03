@@ -18,8 +18,12 @@ const routes = {
             load: () => import(/* webpackChunkName: 'home' */ './register'),
         },
         {
-            path: '/dashboard',
-            load: () => import(/* webpackChunkName: 'home' */ './dashboard'),
+            path: '/home',
+            load: () => import(/* webpackChunkName: 'home' */ './home'),
+        },
+        {
+            path: '/settings',
+            load: () => import(/* webpackChunkName: 'home' */ './settings'),
         },
         {
             path: '(.*)',
