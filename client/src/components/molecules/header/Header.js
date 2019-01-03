@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import setCurrentUser from '../../../actions/user';
 import history from '../../../history';
+import Dropdown from '../dropdown/Dropdown';
 import s from './Header.css';
 
 class Header extends Component {
@@ -31,6 +32,12 @@ class Header extends Component {
             <header>
                 <p>Hi, <span style={{ fontWeight: 'bold' }}>{firstname}</span></p>
                 <button type="button" onClick={this.logOut} className={s.button}>Logout</button>
+                <Dropdown
+                    menuItems={['A', 'B']}
+                    render={({ toggleMenu }) => (
+                        <button type="button" onClick={() => toggleMenu()}>Toggle</button>
+                    )}
+                />
             </header>
         );
     }
