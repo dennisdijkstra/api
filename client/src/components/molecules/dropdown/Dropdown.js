@@ -5,9 +5,7 @@ import s from './Dropdown.css';
 class Dropdown extends Component {
     static propTypes = {
         render: PropTypes.func.isRequired,
-        menuItems: PropTypes.arrayOf(
-            PropTypes.string,
-        ).isRequired,
+        children: PropTypes.node.isRequired,
     }
 
     state = {
@@ -20,16 +18,16 @@ class Dropdown extends Component {
     }
 
     render() {
-        const { render, menuItems } = this.props;
+        const { render, children } = this.props;
         const { isOpen } = this.state;
 
         return (
             <div>
                 {render({ toggleMenu: this.toggleMenu })}
                 { isOpen && (
-                    <ul>
-                        {menuItems.map(menuItem => <li>{menuItem}</li>)}
-                    </ul>
+                    <div className={s.items}>
+                        { children }
+                    </div>
                 )}
             </div>
         );

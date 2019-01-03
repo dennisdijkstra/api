@@ -1,9 +1,19 @@
-ul {
+.items {
+    min-width: 200px;
     position: absolute;
     padding: 0 7px;
     list-style: none;
-}
 
-li {
-    text-decoration: none;
+    a {
+        display: block;
+    }
+
+    button {
+        padding: 0;
+    }
+
+    a,
+    button {
+        margin-bottom: 6px;
+    }
 }
