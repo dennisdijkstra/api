@@ -30,12 +30,11 @@ class Header extends Component {
 
         return (
             <header>
-                <p>Hi, <span style={{ fontWeight: 'bold' }}>{firstname}</span></p>
                 <button type="button" onClick={this.logOut} className={s.button}>Logout</button>
                 <Dropdown
-                    menuItems={['A', 'B']}
+                    menuItems={['Settings', 'Log out']}
                     render={({ toggleMenu }) => (
-                        <button type="button" onClick={() => toggleMenu()}>Toggle</button>
+                        <button type="button" onClick={() => toggleMenu()}>{firstname}</button>
                     )}
                 />
             </header>

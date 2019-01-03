@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import s from './Dropdown.css';
 
 class Dropdown extends Component {
     static propTypes = {
