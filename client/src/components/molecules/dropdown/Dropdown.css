@@ -1,10 +1,17 @@
-.items {
-    min-width: 200px;
+.dropdown {
+    position: relative;
+}
+
+.content {
+    min-width: 150px;
+    min-height: 150px;
     position: absolute;
-    top: 84px;
+    top: 48px;
+    right: -7px;
+    padding: 12px;
     background-color: #fff;
-    padding: 0 7px;
     list-style: none;
+    text-align: right;
 
     a {
         display: block;
@@ -16,6 +23,12 @@
 
     a,
     button {
+        color: var(--charcoal);
         margin-bottom: 12px;
+
+        &:hover {
+            color: var(--egg-blue);
+            transition: .2s color;
+        }
     }
 }

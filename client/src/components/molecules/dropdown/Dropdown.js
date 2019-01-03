@@ -27,10 +27,10 @@ class Dropdown extends Component {
         const { isOpen } = this.state;
 
         return (
-            <div>
+            <div className={s.dropdown}>
                 {render({ toggleMenu: this.toggleMenu, closeMenu: this.closeMenu })}
                 { isOpen && (
-                    <div className={s.items}>
+                    <div className={s.content}>
                         { children }
                     </div>
                 )}
