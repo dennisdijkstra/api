@@ -21,8 +21,14 @@ class Header extends Component {
         return (
             <header className={s.header}>
                 <Dropdown
-                    render={({ toggleMenu }) => (
-                        <button type="button" onClick={() => toggleMenu()}>{firstname}</button>
+                    render={({ toggleMenu, closeMenu }) => (
+                        <button
+                            type="button"
+                            onClick={() => toggleMenu()}
+                            onBlur={e => closeMenu(e)}
+                        >
+                            {firstname}
+                        </button>
                     )}
                 >
                     <MenuItems />

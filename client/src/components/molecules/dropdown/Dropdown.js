@@ -17,13 +17,18 @@ class Dropdown extends Component {
         this.setState({ isOpen: !isOpen });
     }
 
+    closeMenu = (e) => {
+        if (e.relatedTarget) return;
+        this.setState({ isOpen: false });
+    }
+
     render() {
         const { render, children } = this.props;
         const { isOpen } = this.state;
 
         return (
             <div>
-                {render({ toggleMenu: this.toggleMenu })}
+                {render({ toggleMenu: this.toggleMenu, closeMenu: this.closeMenu })}
                 { isOpen && (
                     <div className={s.items}>
                         { children }
