@@ -22,6 +22,10 @@ const routes = {
             load: () => import(/* webpackChunkName: 'home' */ './dashboard'),
         },
         {
+            path: '/settings',
+            load: () => import(/* webpackChunkName: 'home' */ './settings'),
+        },
+        {
             path: '(.*)',
             action: () => ({
                 title: 'Page not found',
