@@ -1,13 +1,13 @@
 import React from 'react';
 import Dashboard from '../../components/templates/dashboard/Dashboard';
-import Settings from './Settings';
+import Home from './Home';
 
 const action = () => ({
-    chunks: ['settings'],
-    title: 'Settings',
+    chunks: ['home'],
+    title: 'Home',
     component: (
         <Dashboard>
-            <Settings />
+            <Home />
         </Dashboard>
     ),
 });

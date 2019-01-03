@@ -34,7 +34,7 @@ const render = async (location) => {
 
         ReactDOM.render(
             <Provider store={store}>
-                <div className={s.container}>
+                <div className={s.wrapper}>
                     {route.component}
                 </div>
             </Provider>,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Dropdown from '../dropdown/Dropdown';
 import MenuItems from '../menuItems/MenuItems';
+import Link from '../../atoms/link/Link';
 import s from './Header.css';
 
 class Header extends Component {
@@ -20,6 +21,7 @@ class Header extends Component {
 
         return (
             <header className={s.header}>
+                <Link to="home">Home</Link>
                 <Dropdown
                     render={({ toggleMenu, closeMenu }) => (
                         <button

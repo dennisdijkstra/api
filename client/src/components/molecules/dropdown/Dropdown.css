@@ -1,6 +1,8 @@
 .items {
     min-width: 200px;
     position: absolute;
+    top: 84px;
+    background-color: #fff;
     padding: 0 7px;
     list-style: none;
 
@@ -14,6 +16,6 @@
 
     a,
     button {
-        margin-bottom: 6px;
+        margin-bottom: 12px;
     }
 }

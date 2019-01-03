@@ -1,15 +1,4 @@
-header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-}
-
-.button {
-    margin: 0 0 0 24px;
-    padding: 0;
-    color: var(--charcoal);
-}
-
-p {
-    margin: 0;
+.content {
+    min-height: calc(100vh - 60px);
+    padding: 30px 20px;
 }

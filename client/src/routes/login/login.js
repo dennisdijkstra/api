@@ -38,7 +38,7 @@ class Login extends Component {
 
                 localStorage.setItem('jwtToken', token);
                 setUser(decoded);
-                history.push('/dashboard');
+                history.push('/home');
             }
         }
     };
