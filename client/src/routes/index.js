@@ -26,6 +26,10 @@ const routes = {
             load: () => import(/* webpackChunkName: 'home' */ './settings'),
         },
         {
+            path: '/:id',
+            load: () => import(/* webpackChunkName: 'home' */ './detail'),
+        },
+        {
             path: '(.*)',
             action: () => ({
                 title: 'Page not found',
