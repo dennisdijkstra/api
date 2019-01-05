@@ -7,7 +7,7 @@ const action = ({ store }) => {
     const { user: { isAuthenticated } } = state;
 
     if (isAuthenticated) {
-        return { redirect: '/home' };
+        return { redirect: '/' };
     }
 
     return {
