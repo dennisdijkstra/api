@@ -9,7 +9,8 @@
     "dev": "webpack --mode development ./client/src/client.js --output ./client/dist/bundle.js --open",
     "client": "concurrently \"npm:dev\" \"npm:webpack\"",
     "build": "webpack --mode production ./client/src/client.js --output ./client/dist/bundle.js --open",
-    "start": "concurrently \"npm:server\" \"npm:client\""
+    "start": "concurrently \"npm:server\" \"npm:client\"",
+    "test": "jest --watchAll --verbose false"
   },
   "proxy": "http://localhost:5000",
   "author": "",
@@ -22,10 +23,12 @@
     "classnames": "^2.2.6",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
+    "enzyme": "^3.8.0",
     "express": "^4.16.4",
     "formik": "^1.4.1",
     "history": "^4.7.2",
     "is-empty": "^1.2.0",
+    "jest": "^23.6.0",
     "jsonwebtoken": "^8.4.0",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.4.0",
@@ -44,6 +47,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
+    "react-test-renderer": "^16.7.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "style-loader": "^0.23.1",
@@ -51,7 +55,7 @@
     "uuid": "^3.3.2",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "webpack-dev-server": ">=3.1.11",
     "yup": "^0.26.6"
   },
   "devDependencies": {
@@ -59,7 +63,9 @@
     "@babel/plugin-proposal-class-properties": "^7.2.1",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.0",
     "eslint": "^5.10.0",
@@ -74,6 +80,7 @@
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.2",
     "nodemon": "^1.18.9",
-    "postcss-loader": "^3.0.0"
+    "postcss-loader": "^3.0.0",
+    "regenerator-runtime": "^0.13.1"
   }
 }

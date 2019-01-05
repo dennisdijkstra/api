@@ -21,7 +21,7 @@ class Header extends Component {
 
         return (
             <header className={s.header}>
-                <Link to="home">Home</Link>
+                <Link to="/">Home</Link>
                 <Dropdown
                     render={({ toggleMenu, closeMenu }) => (
                         <button

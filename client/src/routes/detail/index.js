@@ -1,25 +1,25 @@
 import React from 'react';
 import Dashboard from '../../components/templates/dashboard/Dashboard';
-import Home from './Home';
+import Detail from './Detail';
 
-const action = ({ store }) => {
+const action = ({ store, params }) => {
+    const { id } = params;
     const state = store.getState();
     const { user: { isAuthenticated } } = state;
 
     if (!isAuthenticated) {
-        return { redirect: '/login' };
+        return { redirect: '/' };
     }
 
     return {
-        chunks: ['home'],
-        title: 'Home',
+        chunks: ['detail'],
+        title: 'Detail',
         component: (
             <Dashboard>
-                <Home />
+                <Detail id={id} />
             </Dashboard>
         ),
     };
 };
-
 
 export default action;

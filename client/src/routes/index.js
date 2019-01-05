@@ -10,7 +10,7 @@ const routes = {
     },
     children: [
         {
-            path: '/',
+            path: '/login',
             load: () => import(/* webpackChunkName: 'home' */ './login'),
         },
         {
@@ -18,12 +18,16 @@ const routes = {
             load: () => import(/* webpackChunkName: 'home' */ './register'),
         },
         {
-            path: '/home',
+            path: '/',
             load: () => import(/* webpackChunkName: 'home' */ './home'),
         },
         {
             path: '/settings',
             load: () => import(/* webpackChunkName: 'home' */ './settings'),
+        },
+        {
+            path: '/:id',
+            load: () => import(/* webpackChunkName: 'home' */ './detail'),
         },
         {
             path: '(.*)',

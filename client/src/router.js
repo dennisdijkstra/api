@@ -1,7 +1,9 @@
 import UniversalRouter from 'universal-router';
 import routes from './routes';
+import store from './store';
 
-export default new UniversalRouter(routes, {
+const options = {
+    context: { store },
     resolveRoute(context, params) {
         if (typeof context.route.load === 'function') {
             return context.route
@@ -13,4 +15,6 @@ export default new UniversalRouter(routes, {
         }
         return undefined;
     },
-});
+};
+
+export default new UniversalRouter(routes, options);
