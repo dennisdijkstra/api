@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/item';
+import Link from '../../components/atoms/link/Link';
 import s from './home.css';
 
 
@@ -25,7 +26,9 @@ class Home extends Component {
             <div className={s.home}>
                 <h1>Dashboard</h1>
                 {items.map(({ _id, name }) => (
-                    <div key={_id} className={s.item}>{name}</div>
+                    <Link to={`/${_id}`} key={_id}>
+                        <div className={s.item}>{name}</div>
+                    </Link>
                 ))}
             </div>
         );

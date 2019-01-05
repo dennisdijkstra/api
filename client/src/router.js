@@ -1,5 +1,6 @@
 import UniversalRouter from 'universal-router';
 import routes from './routes';
+import store from './store';
 
 export default new UniversalRouter(routes, {
     resolveRoute(context, params) {
@@ -13,4 +14,5 @@ export default new UniversalRouter(routes, {
         }
         return undefined;
     },
+    context: store,
 });
