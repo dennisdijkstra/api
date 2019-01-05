@@ -2,8 +2,8 @@ import React from 'react';
 import Prompt from '../../components/templates/prompt/Prompt';
 import Register from './Register';
 
-const action = ({ getState }) => {
-    const state = getState();
+const action = ({ store }) => {
+    const state = store.getState();
     const { user: { isAuthenticated } } = state;
 
     if (isAuthenticated) {
