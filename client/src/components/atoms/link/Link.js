@@ -20,7 +20,7 @@ class Link extends Component {
         const { to, children, ...otherProps } = this.props;
 
         return (
-            <a href={to} onClick={this.handleClick} {...otherProps}>
+            <a href={to} onClick={this.handleClick} className={s.link} {...otherProps}>
                 {children}
             </a>
         );

@@ -12,6 +12,11 @@
     "start": "concurrently \"npm:server\" \"npm:client\"",
     "test": "jest --watchAll --verbose false"
   },
+  "jest": {
+      "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  },
   "proxy": "http://localhost:5000",
   "author": "",
   "license": "ISC",
@@ -78,6 +83,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "mini-css-extract-plugin": "^0.4.2",
     "nodemon": "^1.18.9",
     "postcss-loader": "^3.0.0",

@@ -4,7 +4,7 @@ import Link from './Link';
 
 it('renders correctly', () => {
     const tree = renderer
-        .create(<Link to="/" />)
+        .create(<Link to="/">Click here</Link>)
         .toJSON();
     expect(tree).toMatchSnapshot();
 });
