@@ -9,6 +9,7 @@ import setCurrentUser from './actions/user';
 import history from './history';
 import router from './router';
 import store from './store';
+import { NotificationProvider } from './context';
 import s from './client.css';
 
 if (localStorage.jwtToken) {
@@ -34,9 +35,11 @@ const render = async (location) => {
 
         ReactDOM.render(
             <Provider store={store}>
-                <div className={s.wrapper}>
-                    {route.component}
-                </div>
+                <NotificationProvider>
+                    <div className={s.wrapper}>
+                        {route.component}
+                    </div>
+                </NotificationProvider>
             </Provider>,
             container,
             () => document.title = route.title,

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { NotificationConsumer } from '../../../context';
+import { NotificationContext } from '../../../context';
 
 
 class NotificationBar extends Component {
     render() {
         return (
-            <NotificationConsumer>
+            <NotificationContext.Consumer>
                 {({ isOpen, message, close }) => {
                     <p>{message}</p>
                 }}
-            </NotificationConsumer>
+            </NotificationContext.Consumer>
         );
     }
 }
