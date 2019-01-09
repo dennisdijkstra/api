@@ -18,6 +18,7 @@ export class NotificationProvider extends Component {
             message,
             isOpen: true,
         });
+        setTimeout(() => this.close(), 5000);
     };
 
     close = () => {

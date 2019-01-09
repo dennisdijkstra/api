@@ -15,7 +15,8 @@ class NotificationBar extends Component {
                     });
                     return (
                         <div className={className}>
-                            {message}
+                            <p>{message}</p>
+                            <button type="button" className={s.closeButton} onClick={() => close()}>Close</button>
                         </div>
                     );
                 }}
