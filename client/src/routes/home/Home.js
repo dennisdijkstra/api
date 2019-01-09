@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/item';
 import Link from '../../components/atoms/link/Link';
+import { NotificationContext } from '../../context';
 import s from './home.css';
 
 
@@ -13,6 +14,8 @@ class Home extends Component {
             items: PropTypes.arrayOf.isRequired,
         }).isRequired,
     };
+
+    static contextType = NotificationContext;
 
     componentDidMount() {
         const { getItems } = this.props;
