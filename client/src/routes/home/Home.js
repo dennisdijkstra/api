@@ -22,11 +22,6 @@ class Home extends Component {
         getItems();
     }
 
-    onClick = () => {
-        const { open } = this.context;
-        open('User settings successfully updated.');
-    }
-
     render() {
         const { item: { items } } = this.props;
 
@@ -38,7 +33,6 @@ class Home extends Component {
                         <div className={s.item}>{name}</div>
                     </Link>
                 ))}
-                <button type="button" onClick={this.onClick}>Click me</button>
             </div>
         );
     }
