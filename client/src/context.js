@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import NotificationBar from './components/molecules/notificationBar/NotificationBar';
 
 export const NotificationContext = React.createContext();
 
@@ -15,7 +14,6 @@ export class NotificationProvider extends Component {
     };
 
     open = (message) => {
-        console.log(message);
         this.setState({
             message,
             isOpen: true,
@@ -42,7 +40,6 @@ export class NotificationProvider extends Component {
                     message,
                 }}
             >
-                <NotificationBar />
                 {children}
             </NotificationContext.Provider>
         );

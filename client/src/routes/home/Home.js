@@ -19,9 +19,12 @@ class Home extends Component {
 
     componentDidMount() {
         const { getItems } = this.props;
-        const { open } = this.context;
-        open('Send test notification');
         getItems();
+    }
+
+    onClick = () => {
+        const { open } = this.context;
+        open('User settings successfully updated.');
     }
 
     render() {
@@ -35,6 +38,7 @@ class Home extends Component {
                         <div className={s.item}>{name}</div>
                     </Link>
                 ))}
+                <button type="button" onClick={this.onClick}>Click me</button>
             </div>
         );
     }

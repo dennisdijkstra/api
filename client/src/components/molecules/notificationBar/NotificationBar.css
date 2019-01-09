@@ -1,0 +1,18 @@
+.bar {
+    z-index: 1;
+    position: absolute;
+    transform: translateY(-50px);
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top, #fc00ff -50%, #00dbde 100%);
+    color: #fff;
+}
+
+.isOpen {
+    transform: translateY(0);
+    transition: transform .5s ease;
+}
