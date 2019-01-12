@@ -1,16 +1,16 @@
 .bar {
-    z-index: 1;
     position: absolute;
-    transform: translateY(-50px);
-    left: 0;
     right: 0;
-    height: 50px;
+    left: 0;
+    z-index: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to top, #fc00ff -50%, #00dbde 100%);
+    justify-content: center;
+    height: 50px;
     color: #fff;
+    background-image: linear-gradient(to top, #fc00ff -50%, #00dbde 100%);
     transition: transform .5s ease;
+    transform: translateY(-50px);
 
     & p {
         font-size: 14px;
@@ -18,16 +18,16 @@
 }
 
 .isOpen {
-    transform: translateY(0);
     transition: transform .5s ease;
+    transform: translateY(0);
 }
 
 .closeButton {
     position: absolute;
     top: 18px;
     right: 10px;
-    background: none;
-    color: #fff;
     margin: 0;
     font-size: 10px;
+    color: #fff;
+    background: none;
 }

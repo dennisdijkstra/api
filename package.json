@@ -13,7 +13,7 @@
     "test": "jest --watchAll --verbose false"
   },
   "jest": {
-      "moduleNameMapper": {
+    "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     }
   },
@@ -87,6 +87,9 @@
     "mini-css-extract-plugin": "^0.4.2",
     "nodemon": "^1.18.9",
     "postcss-loader": "^3.0.0",
-    "regenerator-runtime": "^0.13.1"
+    "regenerator-runtime": "^0.13.1",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recess-order": "^2.0.1",
+    "stylelint-webpack-plugin": "^0.10.5"
   }
 }
