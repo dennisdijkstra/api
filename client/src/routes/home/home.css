@@ -5,8 +5,8 @@
         height: 200px;
         padding: 12px;
         margin: 0 12px 12px 0;
+        color: #fff;
         text-align: center;
         background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 100%);
-        color: #fff;
     }
 }
