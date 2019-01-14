@@ -5,7 +5,7 @@ import 'normalize.css';
 import queryString from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
-import setCurrentUser from './actions/user';
+import { setCurrentUser } from './actions/user';
 import history from './history';
 import router from './router';
 import store from './store';

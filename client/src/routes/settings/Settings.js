@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
+import { updateUser } from '../../actions/user';
 import Field from '../../components/atoms/formik/Field';
 import { SettingsValidation } from '../../validation/ValidationSchema';
 
@@ -19,6 +20,7 @@ class Settings extends Component {
 
     submit = async (values, { setSubmitting, setErrors }) => {
         const { user: { user: { id } } } = this.props;
+        const { updateUser: update } = this.props;
 
         if (values) {
             const response = await fetch(`/api/user/${id}`, {
@@ -34,6 +36,7 @@ class Settings extends Component {
                 setSubmitting(false);
                 setErrors({ [json.field]: json.message });
             } else {
+                update(values);
                 setSubmitting(false);
             }
         }
@@ -74,4 +77,4 @@ const mapStateToProps = state => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps, { updateUser })(Settings);

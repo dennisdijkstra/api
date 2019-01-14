@@ -1,5 +1,5 @@
 import isEmpty from 'is-empty';
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_CURRENT_USER, UPDATE_USER } from '../actions/types';
 
 const initialState = {
     isAuthenticated: false,
@@ -13,6 +13,16 @@ export default (state = initialState, action) => {
             ...state,
             isAuthenticated: !isEmpty(action.payload),
             user: action.payload,
+        };
+    case UPDATE_USER:
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                firstname: action.payload.firstname,
+                lastname: action.payload.lastname,
+                email: action.payload.email,
+            },
         };
     default:
         return state;
