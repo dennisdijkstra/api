@@ -81,3 +81,17 @@ exports.userItems = (req, res) => {
     Item.find({ userId: req.user._id })
         .then(items => res.json(items));
 };
+
+exports.userUpdate = (req, res) => {
+    User.findOneAndUpdate(
+        { _id: req.params.id },
+        { $set: {
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
+        } },
+        { new: true },
+    )
+        .then(item => res.json(item))
+        .catch(() => res.status(404).json({ success: false }));
+};

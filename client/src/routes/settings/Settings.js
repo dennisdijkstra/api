@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import Field from '../../components/atoms/formik/Field';
-import { RegisterValidation } from '../../validation/ValidationSchema';
+import { SettingsValidation } from '../../validation/ValidationSchema';
 
 
 class Settings extends Component {
@@ -16,6 +16,28 @@ class Settings extends Component {
             }),
         }).isRequired,
     }
+
+    submit = async (values, { setSubmitting, setErrors }) => {
+        const { user: { user: { id } } } = this.props;
+
+        if (values) {
+            const response = await fetch(`/api/user/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+            const json = await response.json();
+
+            if (response.status !== 200) {
+                setSubmitting(false);
+                setErrors({ [json.field]: json.message });
+            } else {
+                setSubmitting(false);
+            }
+        }
+    };
 
     render() {
         const { user: { user: { firstname, lastname, email } } } = this.props;
@@ -30,7 +52,7 @@ class Settings extends Component {
                         email,
                     }}
                     onSubmit={this.submit}
-                    validationSchema={RegisterValidation}
+                    validationSchema={SettingsValidation}
                 >
                     {({ dirty, isSubmitting }) => (
                         <>
