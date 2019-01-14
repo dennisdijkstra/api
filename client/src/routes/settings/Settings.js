@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import Field from '../../components/atoms/formik/Field';
 import { RegisterValidation } from '../../validation/ValidationSchema';
 
 
 class Settings extends Component {
+    static propTypes = {
+        user: PropTypes.shape({
+            user: PropTypes.shape({
+                firstname: PropTypes.string.isRequired,
+                lastname: PropTypes.string.isRequired,
+                email: PropTypes.string.isRequired,
+            }),
+        }).isRequired,
+    }
+
     render() {
+        const { user: { user: { firstname, lastname, email } } } = this.props;
+
         return (
             <>
                 <h1>User settings</h1>
                 <Formik
                     initialValues={{
-                        firstname: '',
-                        lastname: '',
-                        email: '',
+                        firstname,
+                        lastname,
+                        email,
                     }}
                     onSubmit={this.submit}
                     validationSchema={RegisterValidation}
@@ -34,4 +48,8 @@ class Settings extends Component {
     }
 }
 
-export default Settings;
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
+export default connect(mapStateToProps)(Settings);
