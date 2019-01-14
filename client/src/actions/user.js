@@ -1,10 +1,15 @@
-import { SET_CURRENT_USER } from './types';
+import { SET_CURRENT_USER, UPDATE_USER } from './types';
 
-const setCurrentUser = decoded => (
+export const setCurrentUser = decoded => (
     {
         type: SET_CURRENT_USER,
         payload: decoded,
     }
 );
 
-export default setCurrentUser;
+export const updateUser = user => (
+    {
+        type: UPDATE_USER,
+        payload: user,
+    }
+);

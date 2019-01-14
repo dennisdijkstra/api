@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
-import setCurrentUser from '../../actions/user';
+import { setCurrentUser } from '../../actions/user';
 import { RegisterValidation } from '../../validation/ValidationSchema';
 import Field from '../../components/atoms/formik/Field';
 import history from '../../history';

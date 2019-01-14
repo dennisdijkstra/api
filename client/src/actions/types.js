@@ -7,3 +7,4 @@ export const ITEMS_LOADING = 'ITEMS_LOADING';
 export const SET_IS_EDITABLE = 'SET_IS_EDITABLE';
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const UPDATE_USER = 'UPDATE_USER';

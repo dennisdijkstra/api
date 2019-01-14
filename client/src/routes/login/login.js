@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../../utils/setAuthToken';
-import setCurrentUser from '../../actions/user';
+import { setCurrentUser } from '../../actions/user';
 import { LoginValidation } from '../../validation/ValidationSchema';
 import history from '../../history';
 import Field from '../../components/atoms/formik/Field';
