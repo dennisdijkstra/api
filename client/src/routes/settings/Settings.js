@@ -5,6 +5,7 @@ import { Formik, Form } from 'formik';
 import { updateUser } from '../../actions/user';
 import Field from '../../components/atoms/formik/Field';
 import { SettingsValidation } from '../../validation/ValidationSchema';
+import { NotificationContext } from '../../context';
 
 
 class Settings extends Component {
@@ -18,9 +19,10 @@ class Settings extends Component {
         }).isRequired,
     }
 
+    static contextType = NotificationContext;
+
     submit = async (values, { setSubmitting, setErrors }) => {
-        const { user: { user: { id } } } = this.props;
-        const { updateUser: update } = this.props;
+        const { user: { user: { id } }, updateUser: update } = this.props;
 
         if (values) {
             const response = await fetch(`/api/user/${id}`, {
@@ -36,7 +38,9 @@ class Settings extends Component {
                 setSubmitting(false);
                 setErrors({ [json.field]: json.message });
             } else {
+                const { open } = this.context;
                 update(values);
+                open('User settings successfully updated.');
                 setSubmitting(false);
             }
         }
