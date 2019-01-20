@@ -3,13 +3,21 @@ import PropTypes from 'prop-types';
 
 class Detail extends Component {
     static propTypes = {
-        id: PropTypes.string.isRequired,
+        data: PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            userId: PropTypes.string.isRequired,
+        }).isRequired,
     }
 
     render() {
-        const { id } = this.props;
+        const { data: { name, _id: id, userId } } = this.props;
         return (
-            <h1>{id}</h1>
+            <>
+                <p>id: {id}</p>
+                <p>name: {name}</p>
+                <p>userId: {userId}</p>
+            </>
         );
     }
 }

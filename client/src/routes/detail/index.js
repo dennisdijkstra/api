@@ -2,7 +2,7 @@ import React from 'react';
 import Dashboard from '../../components/templates/dashboard/Dashboard';
 import Detail from './Detail';
 
-const action = ({ store, params }) => {
+const action = async ({ store, params }) => {
     const { id } = params;
     const state = store.getState();
     const { user: { isAuthenticated } } = state;
@@ -11,15 +11,22 @@ const action = ({ store, params }) => {
         return { redirect: '/' };
     }
 
-    return {
-        chunks: ['detail'],
-        title: 'Detail',
-        component: (
-            <Dashboard>
-                <Detail id={id} />
-            </Dashboard>
-        ),
-    };
+    try {
+        const response = await fetch(`/api/item/${id}`);
+        const data = await response.json();
+
+        return {
+            chunks: ['detail'],
+            title: 'Detail',
+            component: (
+                <Dashboard>
+                    <Detail data={data} />
+                </Dashboard>
+            ),
+        };
+    } catch (err) {
+        return { redirect: '/404' };
+    }
 };
 
 export default action;
