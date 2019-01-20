@@ -3,6 +3,7 @@ import Dashboard from '../../components/templates/dashboard/Dashboard';
 import Detail from './Detail';
 
 const action = async ({ store, params }) => {
+    console.log('detail');
     const { id } = params;
     const state = store.getState();
     const { user: { isAuthenticated } } = state;
@@ -15,6 +16,10 @@ const action = async ({ store, params }) => {
         const response = await fetch(`/api/item/${id}`);
         const data = await response.json();
 
+        if (!response.ok) {
+            return { redirect: '../error' };
+        }
+
         return {
             chunks: ['detail'],
             title: 'Detail',
@@ -25,7 +30,7 @@ const action = async ({ store, params }) => {
             ),
         };
     } catch (err) {
-        return { redirect: '/404' };
+        return { redirect: '../error' };
     }
 };
 

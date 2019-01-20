@@ -1,5 +1,3 @@
-import React from 'react';
-
 const routes = {
     path: '/',
     async action({ next }) {
@@ -9,6 +7,10 @@ const routes = {
         return route;
     },
     children: [
+        {
+            path: '/error',
+            load: () => import(/* webpackChunkName: 'home' */ './error'),
+        },
         {
             path: '/login',
             load: () => import(/* webpackChunkName: 'home' */ './login'),
@@ -30,11 +32,8 @@ const routes = {
             load: () => import(/* webpackChunkName: 'home' */ './detail'),
         },
         {
-            path: '(.*)',
-            action: () => ({
-                title: 'Page not found',
-                component: <h1>Page not found</h1>,
-            }),
+            path: '/(.*)',
+            load: () => import(/* webpackChunkName: 'home' */ './error'),
         },
     ],
 };
