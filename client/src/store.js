@@ -14,10 +14,12 @@ const initialState = {};
 const middleware = [thunk];
 
 /* eslint-disable no-underscore-dangle */
-export const store = createStore(persistedReducer, initialState, compose(
+const store = createStore(persistedReducer, initialState, compose(
     applyMiddleware(...middleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 ));
-export const persistor = persistStore(store);
-
 /* eslint-enable */
+
+const persistor = persistStore(store);
+
+export { store, persistor };
