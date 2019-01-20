@@ -1,6 +1,6 @@
 import UniversalRouter from 'universal-router';
 import routes from './routes';
-import store from './store';
+import { store } from './store';
 
 const options = {
     context: { store },

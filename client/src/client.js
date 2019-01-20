@@ -5,10 +5,11 @@ import 'normalize.css';
 import queryString from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { setCurrentUser } from './actions/user';
 import history from './history';
 import router from './router';
-import store from './store';
+import { store, persistor } from './store';
 import { NotificationProvider } from './context';
 import s from './client.css';
 
@@ -35,11 +36,13 @@ const render = async (location) => {
 
         ReactDOM.render(
             <Provider store={store}>
-                <NotificationProvider>
-                    <div className={s.wrapper}>
-                        {route.component}
-                    </div>
-                </NotificationProvider>
+                <PersistGate loading={null} persistor={persistor}>
+                    <NotificationProvider>
+                        <div className={s.wrapper}>
+                            {route.component}
+                        </div>
+                    </NotificationProvider>
+                </PersistGate>
             </Provider>,
             container,
             () => document.title = route.title,
