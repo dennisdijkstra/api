@@ -8,10 +8,6 @@ const routes = {
     },
     children: [
         {
-            path: '/error',
-            load: () => import(/* webpackChunkName: 'home' */ './error'),
-        },
-        {
             path: '/login',
             load: () => import(/* webpackChunkName: 'home' */ './login'),
         },
@@ -28,11 +24,11 @@ const routes = {
             load: () => import(/* webpackChunkName: 'home' */ './settings'),
         },
         {
-            path: '/:id',
+            path: '/item/:id',
             load: () => import(/* webpackChunkName: 'home' */ './detail'),
         },
         {
-            path: '/(.*)',
+            path: '(.*)',
             load: () => import(/* webpackChunkName: 'home' */ './error'),
         },
     ],

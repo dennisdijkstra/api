@@ -33,6 +33,9 @@ module.exports = {
             },
         ],
     },
+    output: {
+        publicPath: '/',
+    },
     devServer: {
         port: 3000,
         open: true,

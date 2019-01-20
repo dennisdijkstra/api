@@ -29,7 +29,7 @@ class Home extends Component {
             <div className={s.home}>
                 <h1>Dashboard</h1>
                 {items.map(({ _id, name }) => (
-                    <Link to={`/${_id}`} key={_id}>
+                    <Link to={`/item/${_id}`} key={_id}>
                         <div className={s.item}>{name}</div>
                     </Link>
                 ))}

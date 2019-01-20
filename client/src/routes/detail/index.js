@@ -3,7 +3,6 @@ import Dashboard from '../../components/templates/dashboard/Dashboard';
 import Detail from './Detail';
 
 const action = async ({ store, params }) => {
-    console.log('detail');
     const { id } = params;
     const state = store.getState();
     const { user: { isAuthenticated } } = state;
