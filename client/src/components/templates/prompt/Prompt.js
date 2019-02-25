@@ -1,23 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Prompt.css';
 
-class Prompt extends Component {
-    static propTypes = {
-        children: PropTypes.node.isRequired,
-    };
+const Prompt = ({ children }) => (
+    <div className={s.container}>
+        <div>
+            {children}
+        </div>
+    </div>
+);
 
-    render() {
-        const { children } = this.props;
-
-        return (
-            <div className={s.container}>
-                <div>
-                    {children}
-                </div>
-            </div>
-        );
-    }
-}
+Prompt.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default Prompt;
