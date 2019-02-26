@@ -1,30 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../molecules/header/Header';
-import { NotificationContext } from '../../../context';
 import NotificationBar from '../../molecules/notificationBar/NotificationBar';
 import s from './Dashboard.css';
 
-class Dashboard extends Component {
-    static propTypes = {
-        children: PropTypes.node.isRequired,
-    };
+const Dashboard = ({ children }) => (
+    <>
+        <NotificationBar />
+        <Header />
+        <div className={s.content}>
+            {children}
+        </div>
+    </>
+);
 
-    static contextType = NotificationContext;
-
-    render() {
-        const { children } = this.props;
-
-        return (
-            <>
-                <NotificationBar />
-                <Header />
-                <div className={s.content}>
-                    {children}
-                </div>
-            </>
-        );
-    }
-}
+Dashboard.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default Dashboard;

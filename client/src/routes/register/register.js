@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../actions/user';
@@ -8,8 +8,8 @@ import history from '../../history';
 import Link from '../../components/atoms/link/Link';
 
 
-class Register extends Component {
-    submit = async (values, { setErrors, setSubmitting }) => {
+const Register = () => {
+    const submit = async (values, { setErrors, setSubmitting }) => {
         if (values) {
             const response = await fetch('/api/user/register', {
                 method: 'POST',
@@ -29,37 +29,35 @@ class Register extends Component {
         }
     };
 
-    render() {
-        return (
-            <>
-                <h1>Register for an account</h1>
-                <Formik
-                    initialValues={{
-                        firstname: '',
-                        lastname: '',
-                        email: '',
-                        password: '',
-                    }}
-                    onSubmit={this.submit}
-                    validationSchema={RegisterValidation}
-                >
-                    {({ dirty, isSubmitting }) => (
-                        <>
-                            <Form>
-                                <Field name="firstname" label="First name" placeholder="First name" />
-                                <Field name="lastname" label="Last name" placeholder="Last name" />
-                                <Field name="email" label="E-mail" placeholder="E-mail" />
-                                <Field name="password" label="Password" placeholder="Password" />
-                                <button disabled={!dirty || isSubmitting} type="submit">Register</button>
-                            </Form>
-                            <Link to="/">Login to your account</Link>
-                        </>
-                    )}
-                </Formik>
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <h1>Register for an account</h1>
+            <Formik
+                initialValues={{
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                    password: '',
+                }}
+                onSubmit={submit}
+                validationSchema={RegisterValidation}
+            >
+                {({ dirty, isSubmitting }) => (
+                    <>
+                        <Form>
+                            <Field name="firstname" label="First name" placeholder="First name" />
+                            <Field name="lastname" label="Last name" placeholder="Last name" />
+                            <Field name="email" label="E-mail" placeholder="E-mail" />
+                            <Field name="password" label="Password" placeholder="Password" />
+                            <button disabled={!dirty || isSubmitting} type="submit">Register</button>
+                        </Form>
+                        <Link to="/">Login to your account</Link>
+                    </>
+                )}
+            </Formik>
+        </>
+    );
+};
 
 const mapStateToProps = state => ({
     user: state.user,

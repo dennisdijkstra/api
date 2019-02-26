@@ -1,25 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Detail extends Component {
-    static propTypes = {
-        data: PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            userId: PropTypes.string.isRequired,
-        }).isRequired,
-    }
+const Detail = ({ data: { name, _id: id, userId } }) => (
+    <>
+        <p>id: {id}</p>
+        <p>name: {name}</p>
+        <p>userId: {userId}</p>
+    </>
+);
 
-    render() {
-        const { data: { name, _id: id, userId } } = this.props;
-        return (
-            <>
-                <p>id: {id}</p>
-                <p>name: {name}</p>
-                <p>userId: {userId}</p>
-            </>
-        );
-    }
-}
+Detail.propTypes = {
+    data: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        userId: PropTypes.string.isRequired,
+    }).isRequired,
+};
 
 export default Detail;
