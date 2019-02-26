@@ -7,7 +7,7 @@ const Dropdown = ({ title, children }) => {
     const [isOpen, toggleMenu, closeMenu] = useDropdown();
 
     return (
-        <>
+        <div>
             <button
                 type="button"
                 onClick={toggleMenu}
@@ -22,7 +22,7 @@ const Dropdown = ({ title, children }) => {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 

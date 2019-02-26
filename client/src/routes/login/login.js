@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
@@ -10,14 +10,8 @@ import history from '../../history';
 import Field from '../../components/atoms/formik/Field';
 import Link from '../../components/atoms/link/Link';
 
-class Login extends Component {
-    static propTypes = {
-        setCurrentUser: PropTypes.func.isRequired,
-    };
-
-    submit = async (values, { setErrors, setSubmitting }) => {
-        const { setCurrentUser: setUser } = this.props;
-
+const Login = ({ setCurrentUser: setUser }) => {
+    const submit = async (values, { setErrors, setSubmitting }) => {
         if (values) {
             const response = await fetch('/api/user/login', {
                 method: 'POST',
@@ -42,36 +36,38 @@ class Login extends Component {
         }
     };
 
-    render() {
-        return (
-            <>
-                <h1>Log into your account</h1>
-                <Formik
-                    initialValues={{
-                        email: '',
-                        password: '',
-                    }}
-                    onSubmit={this.submit}
-                    validationSchema={LoginValidation}
-                >
-                    {({ dirty, isSubmitting }) => (
-                        <>
-                            <Form>
-                                <Field name="email" label="E-mail" placeholder="E-mail" />
-                                <Field name="password" label="Password" placeholder="Password" />
-                                <button disabled={!dirty || isSubmitting} type="submit">Login</button>
-                            </Form>
-                            <Link to="/register">Register for an account</Link>
-                        </>
-                    )}
-                </Formik>
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <h1>Log into your account</h1>
+            <Formik
+                initialValues={{
+                    email: '',
+                    password: '',
+                }}
+                onSubmit={submit}
+                validationSchema={LoginValidation}
+            >
+                {({ dirty, isSubmitting }) => (
+                    <>
+                        <Form>
+                            <Field name="email" label="E-mail" placeholder="E-mail" />
+                            <Field name="password" label="Password" placeholder="Password" />
+                            <button disabled={!dirty || isSubmitting} type="submit">Login</button>
+                        </Form>
+                        <Link to="/register">Register for an account</Link>
+                    </>
+                )}
+            </Formik>
+        </>
+    );
+};
 
 const mapStateToProps = state => ({
     user: state.user,
 });
+
+Login.propTypes = {
+    setCurrentUser: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, { setCurrentUser })(Login);
