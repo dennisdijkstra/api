@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ErrorPage extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Oops.. The page you&apos;re looking for does not exist</h1>
-            </div>
-        );
-    }
-}
+const ErrorPage = () => (
+    <div>
+        <h1>Oops.. The page you&apos;re looking for does not exist</h1>
+    </div>
+);
 
 export default ErrorPage;
