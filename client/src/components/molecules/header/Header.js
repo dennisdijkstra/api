@@ -9,17 +9,7 @@ import s from './Header.css';
 const Header = ({ user: { user: { firstname } } }) => (
     <header className={s.header}>
         <Link to="/">Home</Link>
-        <Dropdown
-            render={({ toggleMenu, closeMenu }) => (
-                <button
-                    type="button"
-                    onClick={() => toggleMenu()}
-                    onBlur={e => closeMenu(e)}
-                >
-                    {firstname}
-                </button>
-            )}
-        >
+        <Dropdown title={firstname}>
             <MenuItems />
         </Dropdown>
     </header>
