@@ -10,7 +10,6 @@ import history from '../../history';
 import Field from '../../components/atoms/formik/Field';
 import Link from '../../components/atoms/link/Link';
 
-
 class Login extends Component {
     static propTypes = {
         setCurrentUser: PropTypes.func.isRequired,

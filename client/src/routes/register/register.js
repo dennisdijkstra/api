@@ -7,7 +7,6 @@ import Field from '../../components/atoms/formik/Field';
 import history from '../../history';
 import Link from '../../components/atoms/link/Link';
 
-
 const Register = () => {
     const submit = async (values, { setErrors, setSubmitting }) => {
         if (values) {

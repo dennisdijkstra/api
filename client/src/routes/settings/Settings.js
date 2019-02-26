@@ -7,7 +7,6 @@ import Field from '../../components/atoms/formik/Field';
 import { SettingsValidation } from '../../validation/ValidationSchema';
 import { NotificationContext } from '../../context';
 
-
 const Settings = (props) => {
     const context = useContext(NotificationContext);
 
